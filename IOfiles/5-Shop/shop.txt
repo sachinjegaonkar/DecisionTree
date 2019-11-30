@@ -1,0 +1,25 @@
+create table shop(age VARCHAR(20), income VARCHAR(20), student
+ VARCHAR(20), credit VARCHAR(20), class VARCHAR(20));
+
+insert into shop(age, income, student, credit, class) values
+('<=30', 'High',  'No', 'Fair',      'No'),
+('<=30', 'High',  'No', 'Excellent', 'No'),
+('31...40','High',  'No', 'Fair',      'Yes'),
+('>40',  'Medium','No', 'Fair',      'Yes'),
+('>40',  'Low',   'Yes','Fair',      'Yes'),
+('>40',  'Low',   'Yes','Excellent', 'No'),
+('31...40','Low',   'Yes','Excellent', 'Yes'),
+('<=30', 'Medium','No', 'Fair',      'No'),
+('<=30', 'Low',   'Yes','Fair',      'Yes'),
+('>40',  'Medium','Yes','Fair',      'Yes'),
+('<=30', 'Medium','Yes','Excellent', 'Yes'),
+('31...40','Medium','No', 'Excellent', 'Yes'),
+('31...40','High',  'Yes','Fair',      'Yes'),
+('>40',  'Medium','No', 'Excellent', 'No');
+
+CREATE TABLE `shop_cost` (
+  `columnname` varchar(20) default NULL,
+  `cost` varchar(20) default NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+insert into shop_cost(columnname, cost) values('age', '100'), ('income', '10'), ('student', '20'), ('credit', '200');

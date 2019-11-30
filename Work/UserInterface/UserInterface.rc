@@ -1,0 +1,172 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#define APSTUDIO_HIDDEN_SYMBOLS
+#include "windows.h"
+#undef APSTUDIO_HIDDEN_SYMBOLS
+#include "resource.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDI_USERINTERFACE       ICON                    "UserInterface.ICO"
+IDI_SMALL               ICON                    "SMALL.ICO"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDC_USERINTERFACE MENU 
+BEGIN
+    POPUP "&File"
+    BEGIN
+        MENUITEM "E&xit",                       IDM_EXIT
+    END
+    POPUP "&Help"
+    BEGIN
+        MENUITEM "&About ...",                  IDM_ABOUT
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Accelerator
+//
+
+IDC_USERINTERFACE ACCELERATORS 
+BEGIN
+    "?",            IDM_ABOUT,              ASCII,  ALT
+    "/",            IDM_ABOUT,              ASCII,  ALT
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_DECISIONTREE DIALOGEX 22, 17, 251, 213
+STYLE DS_SETFONT | DS_MODALFRAME | DS_CENTER | WS_VISIBLE | WS_CAPTION
+EXSTYLE WS_EX_TOOLWINDOW
+CAPTION "Decision Tree"
+FONT 8, "System", 0, 0, 0x1
+BEGIN
+    ICON            IDI_USERINTERFACE,IDC_MYICON,17,7,20,20
+    LTEXT           "Generate decision tree for selected database",IDC_HADING,49,10,152,8,SS_NOPREFIX
+    PUSHBUTTON      "Cancel",IDC_CANCEL,187,188,56,17,WS_GROUP
+    LTEXT           "Select Database",IDC_DBSELECTION,8,28,135,10
+    GROUPBOX        "Database Information",IDC_DBINFO,8,62,235,93,WS_GROUP
+    GROUPBOX        "Method",IDC_STATIC,8,157,235,26
+    CONTROL         "Gain",IDC_RADIOGAIN,"Button",BS_AUTORADIOBUTTON,48,167,58,10
+    CONTROL         "Minimal Cost",IDC_RADIOMINCOST,"Button",BS_AUTORADIOBUTTON,143,166,67,12
+    PUSHBUTTON      "Show Tree",IDC_SHOW,122,188,57,17,WS_GROUP
+    LISTBOX         IDC_DBLIST,15,86,82,62,LBS_SORT | LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_HSCROLL | WS_TABSTOP
+    GROUPBOX        "Table Information",IDC_STATIC,103,72,133,77
+    RTEXT           "Number of Attributes : ",IDC_STATIC,113,87,75,10
+    LTEXT           "",IDC_ATTRIBUTES,190,88,24,11
+    RTEXT           "Number of Instances : ",IDC_STATIC,113,106,75,8
+    LTEXT           "",IDC_INSTANCES,190,106,27,13
+    RTEXT           "Number of Classes :",IDC_STATIC,111,125,75,9
+    LTEXT           "",IDC_CLASSES,190,125,25,12
+    LTEXT           "Tables",IDC_STATIC,16,74,49,10
+    COMBOBOX        IDC_COMBO1,8,43,123,30,CBS_DROPDOWN | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+END
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+2 TEXTINCLUDE 
+BEGIN
+    "#define APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "#include ""windows.h""\r\n"
+    "#undef APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "#include ""resource.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_DECISIONTREE, DIALOG
+    BEGIN
+        RIGHTMARGIN, 250
+        BOTTOMMARGIN, 205
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDS_APP_TITLE           "Decision Tree"
+    IDS_HELLO               "VIT"
+    IDC_USERINTERFACE       "USERINTERFACE"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

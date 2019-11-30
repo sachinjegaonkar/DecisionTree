@@ -1,0 +1,30 @@
+.adHeadline {font-size:10pt;font-weight:bold;}
+.adText {font-size:8pt;font-weight:normal;text-decoration:none;}
+.dgLink {font-weight:bold;text-decoration:none}
+.dgLink2 {text-decoration:none}
+.dgContents  { background-color: #CCCCFF; font-family:Verdana, Arial, Helvetica, sans-serif; font-size:10pt }
+.dgTable   { border: 1px solid #000099;  }
+.dgTopTable { border: 3px solid #000099;  }
+.dgSmall {font-size:8pt; font-family:Verdana, Arial, Helvetica, sans-serif}
+.dgLarger {font-size:12pt; font-family:Verdana, Arial, Helvetica, sans-serif}
+.dgLargest {font-size:14pt; font-family:Verdana, Arial, Helvetica, sans-serif}
+td {font-family:Verdana, Arial, Helvetica, sans-serif; font-size:10pt}
+TD {font-family:Verdana, Arial, Helvetica, sans-serif; font-size:10pt}
+BODY {background-color: #FFFFFF; font-family:Verdana, Arial, Helvetica, sans-serif; font-size:10pt}
+body {background-color: #FFFFFF; font-family:Verdana, Arial, Helvetica, sans-serif; font-size:10pt}
+code {color: #008000; font-family:New Courier, Courier}
+CODE {color: #008000; font-size: 9pt; font-family:New Courier, Courier}
+hr {color:#000099}
+HR {color:#000099}
+H1 {font-size: 14pt; font-family:Verdana, Arial, Helvetica, sans-serif}
+H2 {font-size: 12pt; font-family:Verdana, Arial, Helvetica, sans-serif}
+H3 {font-size: 10pt; font-family:Verdana, Arial, Helvetica, sans-serif}
+H4 {font-size: 10pt; font-family:Verdana, Arial, Helvetica, sans-serif}
+H5 {font-size: 8pt; font-family:Verdana, Arial, Helvetica, sans-serif}
+H6 {font-size: 8pt; font-family:Verdana, Arial, Helvetica, sans-serif}
+h1 {font-size: 12pt; font-family:Verdana, Arial, Helvetica, sans-serif}
+h2 {font-size: 12pt; font-family:Verdana, Arial, Helvetica, sans-serif}
+h3 {font-size: 10pt; font-family:Verdana, Arial, Helvetica, sans-serif}
+h4 {font-size: 10pt; font-family:Verdana, Arial, Helvetica, sans-serif}
+h5 {font-size: 8pt; font-family:Verdana, Arial, Helvetica, sans-serif}
+h6 {font-size: 8pt; font-family:Verdana, Arial, Helvetica, sans-serif}

@@ -1,0 +1,2 @@
+Mysql Port Number: 3306
+Root Password: ignou

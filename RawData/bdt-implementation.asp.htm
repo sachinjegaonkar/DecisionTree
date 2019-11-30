@@ -1,0 +1,455 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><title>generation5 - Binary Decision Tree implementation in C++</title>
+
+
+
+  
+    
+    <link rel="stylesheet" href="bdt-implementation.asp_files/main.css" type="text/css">
+    <link rel="stylesheet" href="bdt-implementation.asp_files/generation5.css" type="text/css">
+    <link rel="shortcut icon" href="http://www.generation5.org/favicon.ico">
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    
+<script language="JavaScript">
+<!--
+
+function SymError()
+{
+  return true;
+}
+
+window.onerror = SymError;
+
+var SymRealWinOpen = window.open;
+
+function SymWinOpen(url, name, attributes)
+{
+  return (new Object());
+}
+
+window.open = SymWinOpen;
+
+//-->
+</script>
+
+<script type="text/javascript" src="bdt-implementation.asp_files/default.js" language="JavaScript"></script></head><body bgcolor="#cfcfcf">
+  <a name="top"></a>
+  <table id="generation5" align="center" cellpadding="0" cellspacing="0">
+    <tbody><tr><td id="headerArea" colspan="3">
+      <table cellpadding="0" cellspacing="0" width="100%">
+        <tbody><tr>
+          <td><a href="http://www.generation5.org/"><img src="bdt-implementation.asp_files/mainLogo.png" alt="At the forefront of Artificial Intelligence" border="0"></a></td>
+        <td id="adArea" align="center" background="bdt-implementation.asp_files/logoFiller.png" width="100%"><span class="noprint"><script type="text/javascript"><!--
+google_ad_client = "pub-0581926527205813";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "text";
+google_ad_channel = "";
+//-->
+</script>
+<script type="text/javascript" src="bdt-implementation.asp_files/show_ads.js">
+</script><iframe name="google_ads_frame" src="bdt-implementation.asp_files/ads.htm" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" frameborder="0" height="60" scrolling="no" width="468"></iframe></span></td>
+      </tr>
+    </tbody></table>
+    </td></tr>
+    <tr><td id="toolbarArea" colspan="3">
+      <table id="toolbar" cellpadding="0" cellspacing="0">
+        <tbody><tr>
+          <td id="left">&nbsp;</td>
+          <td width="80"><a href="http://www.generation5.org/">Home</a></td>
+          <td class="selected" width="80"><a href="http://www.generation5.org/articles.asp">Articles</a></td>
+          <td width="80"><a href="http://www.generation5.org/reviews.asp">Reviews</a></td>
+          <td width="80"><a href="http://www.generation5.org/interviews.asp">Interviews</a></td>
+          <td width="80"><a href="http://www.generation5.org/jdk/" title="Generation5 Java Development Kit">JDK</a></td>
+          <td width="80"><a href="http://www.generation5.org/glossary.asp">Glossary</a></td>
+          <td width="80"><a href="http://www.generation5.org/features/features.asp">Features</a></td>
+          <td width="80"><a href="http://www.generation5.org/forums">Discussion</a></td>
+          <td id="right" width="100%">&nbsp;</td>
+          <td width="80"><a href="http://www.generation5.org/search.asp"><b>Search</b></a></td>
+          <td id="right">&nbsp;</td>
+        </tr>
+      </tbody></table>
+    </td></tr>
+
+    <tr><td id="subToolbarArea" colspan="3">
+
+      <ul>
+		<li><img src="bdt-implementation.asp_files/bullet.png" align="absmiddle"> <a href="http://www.generation5.org/contribute.asp">Contribute</a>
+		</li><li><img src="bdt-implementation.asp_files/bullet.png" align="absmiddle"> <a href="http://www.generation5.org/whatsnew.asp">What's New</a>
+		</li><li><img src="bdt-implementation.asp_files/bullet.png" align="absmiddle"> Submit News
+      </li></ul>
+
+    </td>
+    </tr>
+
+
+<tr>
+    <td id="frontpageArea" width="100%">
+
+<div id="articleHeader">
+<div id="backtrackArea"><a href="http://www.generation5.org/">Home</a> » <a href="http://www.generation5.org/articles.asp?Action=Display">Articles</a> » <a href="http://www.generation5.org/articles.asp?Action=List&amp;Topic=Gaming">Gaming</a> » Theory<br></div>
+    <h1>Binary Decision Tree implementation in C++</h1>
+
+  <div id="backtrackArea">By <a href="http://www.generation5.org/profile.asp?id=2574">Paul Thompson</a></div>
+
+</div>
+
+
+<!-- ARTICLE 355 START --><p>
+
+<!-- TEMPORARY REDIRECT! -->
+
+
+<i>University of Newcastle upon Tyne, United Kingdom</i>
+</p><p>
+</p><h1>Overview</h1>
+
+Binary decision trees
+(BDTs) are essentially computer science binary tree structures, enabling a
+conclusion state to be reached from a root node (which you could think of as a
+question or decision choice) via a set of binary (yes/no) decision states.&nbsp; In
+more down-to-earth terms, it is a technique to allow a conclusion to be made
+based on a specified problem definition.&nbsp; Decision trees are a popular
+technique in classification systems as well as in computer game AI and there
+are a whole host of related algorithms of interest, e.g. ID3.
+
+<p>
+
+</p><h1>Reasoning</h1>
+
+A BDT documents the
+reasoning process behind a specific problem statement.&nbsp; It can be used to
+explain why a certain question is being asked by the questions location in the
+decision tree structure.&nbsp; BDTs dictate that the questions which form the nodes
+can only be answered with a &#8220;yes&#8221; or &#8220;no&#8221;.&nbsp; A tree that allows answering with a
+partial &#8220;yes&#8221; or &#8220;no&#8221; would have a much larger number of nodes.&nbsp; The design of
+a decision tree more often than not requires a human proficient in expert
+systems or decision support design (or alternatively a specialist in the
+problem domain).&nbsp; For much smaller scale solutions like this tutorial though a
+logical mind is enough!
+<p>
+
+</p><h1>Tree Structure</h1>
+
+A BDT comprises of a
+set of body nodes which&nbsp;are attached to a&nbsp;root node&nbsp; and which
+terminate at <em><span style="font-family: Verdana;">n</span></em> leaf nodes.&nbsp;
+The root and each body node must have connections to two other
+nodes,&nbsp;otherwise they are classed as terminating nodes where a decision
+outcome state has been reached.&nbsp; The uniform design of the tree based on two
+nodes leads to it being called a binary decision tree.
+<p>
+The leaf nodes in a BDT
+represent a set of terminating "answers" or decision outcome states
+as I have called them, the root and body nodes representing the
+"questions".&nbsp; The BDT arrives at a decision state by gaining answers
+to the body (yes/no) nodes.&nbsp; The nature of the response to a particular
+question dictates which node should be followed to the next question (or answer
+if a leaf node is arrived at).&nbsp; In the case of a binary decision&nbsp; tree the
+responses can only be &#8220;yes&#8221; or &#8220;no&#8221;, each corresponding to one of the two
+available branches at each body node.
+
+</p><h1>Binary Decision Tree Implementation</h1>
+
+The purpose of this
+article is to detail how a BDT can be implemented in C++.&nbsp; The following
+description and UML class diagrams represent the classes involved and a
+demonstration decision tree (game AI related) will be provided.&nbsp; Please consult
+the <a href="http://www.generation5.org/content/2004/data/DecisionTree.zip">source code</a> for further implementation
+details.
+
+<p>
+
+</p><div align="center">
+
+<table style="border: medium none ; background: rgb(224, 224, 224) none repeat scroll 0%; width: 50%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial; border-collapse: collapse;" border="1" cellpadding="0" cellspacing="0" width="50%">
+ <tbody><tr>
+  <td style="border: 1pt solid windowtext; padding: 0cm 5.4pt;" valign="top">
+  <p style="text-align: center;" align="center"><b><span style="font-size: 10pt; font-family: Arial;">TreeNode</span></b></p>
+  </td>
+ </tr>
+ <tr>
+  <td style="border-style: none solid solid; border-color: -moz-use-text-color windowtext windowtext; border-width: medium 1pt 1pt; padding: 0cm 5.4pt;" valign="top">
+  <p><i><span style="font-size: 10pt; font-family: Arial;">m_strQuestOrAns
+  : string</span></i></p>
+  <p><i><span style="font-size: 10pt; font-family: Arial;">m_iNodeID
+  : int</span></i></p>
+  <p><i><span style="font-size: 10pt; font-family: Arial;">m_pYesBranch
+  : TreeNode*</span></i></p>
+  <p><i><span style="font-size: 10pt; font-family: Arial;">m_pNoBranch
+  : TreeNode*</span></i></p>
+  </td>
+ </tr>
+ <tr>
+  <td style="border-style: none solid solid; border-color: -moz-use-text-color windowtext windowtext; border-width: medium 1pt 1pt; padding: 0cm 5.4pt;" valign="top">
+  <p>&nbsp;</p>
+  </td>
+ </tr>
+</tbody></table>
+
+</div>
+<p>
+The TreeNode class
+forms the basic node data type used within the BDT.&nbsp; The TreeNode has a string
+containing either the question to be asked (if a body node) or the actual
+outcome (or &#8220;answer&#8221;) if a leaf node.&nbsp; The data type holds pointers to both a
+&#8220;yes&#8221; and &#8220;no&#8221; TreeNode, similar in an abstract&nbsp;way to variations of the
+linked list data structure.
+</p><p>
+</p><div align="center">
+
+<table style="border: medium none ; background: rgb(224, 224, 224) none repeat scroll 0%; width: 50%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial; border-collapse: collapse;" border="1" cellpadding="0" cellspacing="0" width="50%">
+ <tbody><tr>
+  <td style="border: 1pt solid windowtext; padding: 0cm 5.4pt;" valign="top">
+  <p style="text-align: center;" align="center"><b><span style="font-size: 10pt; font-family: Arial;">DecisionTree</span></b></p>
+  </td>
+ </tr>
+ <tr>
+  <td style="border-style: none solid solid; border-color: -moz-use-text-color windowtext windowtext; border-width: medium 1pt 1pt; padding: 0cm 5.4pt;" valign="top">
+  <p><i><span style="font-size: 10pt; font-family: Arial;">m_pRootNode : TreeNode*</span></i></p>
+  </td>
+ </tr>
+ <tr>
+  <td style="border-style: none solid solid; border-color: -moz-use-text-color windowtext windowtext; border-width: medium 1pt 1pt; padding: 0cm 5.4pt;" valign="top">
+  <p><i><span style="font-size: 10pt; font-family: Arial;">RemoveNode</span></i></p>
+  <p><i><span style="font-size: 10pt; font-family: Arial;">OutputBinaryTree</span></i></p>
+  <p><i><span style="font-size: 10pt; font-family: Arial;">Output</span></i></p>
+  <p><i><span style="font-size: 10pt; font-family: Arial;">AskQuestion</span></i></p>
+  <p><i><span style="font-size: 10pt; font-family: Arial;">Query</span></i></p>
+  <p><i><span style="font-size: 10pt; font-family: Arial;">QueryBinaryTree</span></i></p>
+  <p><i><span style="font-size: 10pt; font-family: Arial;">SearchTreeAndAddNoNode</span></i></p>
+  <p><i><span style="font-size: 10pt; font-family: Arial;">AddNoNode</span></i></p>
+  <p><i><span style="font-size: 10pt; font-family: Arial;">SearchTreeAndAddYesNode</span></i></p>
+  <p><i><span style="font-size: 10pt; font-family: Arial;">AddYesNode</span></i></p>
+  <p><i><span style="font-size: 10pt; font-family: Arial;">CreateRootNode</span></i></p>
+  </td>
+ </tr>
+</tbody></table>
+
+</div>
+<p>
+The DecisionTree class
+is the implementation of a decision tree structure.&nbsp; As you can see from the
+class diagram, the class holds a single root node element pointer form which
+the tree can be traversed (since the nodes themselves hold the pointers to
+subsequent nodes).&nbsp; The DecisionTree class mainly consists of tree generation
+methods to allow the addition of nodes and output / query methods for tree
+traversal.
+
+</p><h2>Creating a root node</h2>
+
+The creation of a root
+node is a simple process of creating the TreeNode m_pRootNode in memory.&nbsp; This
+is the root of the tree and all subsequent branches are attached to this root.
+
+<h2>Adding a TreeNode</h2>
+
+Both of the methods for
+adding a node (AddYesNode, AddNoNode) search from the root node until they find
+the matching node ID to add the new node to.&nbsp; The addition of the new node is a
+simple task of creating the object/s in that particular node.
+
+<h2>Querying the tree</h2>
+
+To query the tree we
+start at the root node and either ask the relevant question at the current node
+(if a body&nbsp;(question) node)&nbsp;or output the string representing the
+decision outcome state of the binary decision tree (if a leaf node).&nbsp; If both
+the yes and no branch of the current node are NULL then this means that there
+are no more questions to ask and the decision outcome state has been reached.&nbsp;
+Otherwise, the current node represents a question or decision point on the
+tree.
+
+<h2>Outputting the tree</h2>
+
+Outputting the tree for
+visual perusal is a simple method of going down the yes and no branches of the
+tree respectively.
+<p>
+This class contains no
+safeguards to ensure that the tree is &#8220;balanced&#8221;, meaning that the root and
+body nodes all have exactly two child nodes.
+
+</p><h1>Example Implementation</h1>
+
+This example demonstrates
+the decision tree classes in use.&nbsp; The sample covers the reasoning involved to
+determine if a game agent should switch to its &#8220;attack&#8221; mode.
+
+<p align="center">
+<img src="bdt-implementation.asp_files/BDT_Example.png" border="0" height="321" width="456">
+</p>
+
+The above diagram shows the structure implemented in the following code &#8211;
+
+<p>
+
+</p><pre style="margin-left: 25px;">DecisionTree* newTree = new DecisionTree();
+newTree-&gt;CreateRootNode(1,"Have you got a weapon?");
+newTree-&gt;AddYesNode(1,2,"Are you close enough to attack?");
+newTree-&gt;AddNoNode(1,3,"Can you tackle bare-handed?");
+newTree-&gt;AddYesNode(2,4, "Attack!!!");
+newTree-&gt;AddNoNode(2,5, "Don't attack!!!");
+newTree-&gt;AddYesNode(3,6, "Attack!!!");
+newTree-&gt;AddNoNode(3,7, "Don't attack!!!");
+newTree-&gt;Output();
+newTree-&gt;Query();
+delete newTree;
+</pre>
+
+<h1>Conclusion</h1>
+
+There are many ways
+these classes could be used as the basis for further investigation of binary
+decision trees.&nbsp; They were made purposely easily to understand and to use, the
+separation of members into public and private / protected members would be
+necessary in order to ensure the robustness of this class.&nbsp; Further BDT
+specific safeguards could be added to ensure balance in the tree as well.&nbsp; The
+code was put together quickly so please don&#8217;t complain about its robustness, if
+you see a problem please get in touch and I will correct it!
+<p>
+Of course the data
+involved does not have to be as basic as strings for output, nor do the
+question nodes need to be answered in such a manual way.&nbsp; You could easily
+return function pointers or similar mechanisms depending on the decision
+outcome state (for example using this with a finite state machine, state
+changes could be determined by a decision tree structure).&nbsp; You could easily
+automatically traverse the tree answering the nodes along the way based on game
+data or perceptual data from a game agent for example.
+</p><p>
+Please consult the
+basic <a href="http://www.generation5.org/content/2004/data/DecisionTree.zip">source code</a>, any comments welcome.&nbsp; I
+hope this has been an interesting demonstration of the technique which you can
+learn from and build upon!
+
+<!-- END TEMPORARY REDIRECT -->
+
+</p><p>
+</p><div class="SmallText" align="right">
+<p>
+
+Submitted: 18/04/2004</p></div><p></p><div class="GreyLegal" align="center">Article content copyright © Paul Thompson, 2004.
+
+</div></td>
+
+<td class="NoPrint" valign="top" width="185">
+
+<table style="margin: 5px;" bgcolor="#7f7f7f" cellpadding="5" cellspacing="1" width="180">
+<tbody><tr>
+  <td class="SmallText" bgcolor="#efefef">&nbsp;<b>Article Toolbar</b></td>
+</tr>
+<tr>
+  <td class="SmallText2" bgcolor="WHITE">
+  <a href="http://www.generation5.org/content/2004/bdt-implementation.asp?Print=1"><img src="bdt-implementation.asp_files/print.gif" align="absmiddle" border="0">Print</a><br><a href="http://www.generation5.org/email.asp?Url=/content/2004/bdt-implementation.asp"><img src="bdt-implementation.asp_files/email.gif" align="absmiddle" border="0">E-mail description</a><br>
+<a href="javascript:popupBibTex('/content/2004/bdt-implementation.asp');"><img src="bdt-implementation.asp_files/tex.gif" align="absmiddle" border="0">BibTeX entry</a>
+
+  </td>
+</tr>
+</tbody></table>
+<p>
+
+
+
+<table class="Box" cellpadding="5" cellspacing="0" width="180">
+<tbody><tr>
+  <td class="BoxHeader">Search</td>
+</tr>
+<tr>
+  <td class="BoxMain">
+    <form action="/search.asp" method="post">
+	<input size="16" name="Search" type="text">
+	<input value="Go" type="submit">
+	</form>
+  </td>
+</tr>
+</tbody></table>
+
+</p><div align="center">
+<script type="text/javascript"><!--
+google_ad_client = "pub-0581926527205813";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript" src="bdt-implementation.asp_files/show_ads.js">
+</script><iframe name="google_ads_frame" src="bdt-implementation.asp_files/ads_002.htm" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" frameborder="0" height="600" scrolling="no" width="160"></iframe>
+</div>
+
+
+<table class="Box" cellpadding="5" cellspacing="0" width="180">
+<tbody><tr>
+  <td class="BoxHeader"><a style="color: white;" href="http://www.generation5.org/">Latest News</a></td>
+</tr>
+<tr>
+<td class="BoxMain">
+- <a href="http://www.generation5.org/news.asp?Action=Full&amp;ID=769">New Generation5 Design!</a> (09/04/2007)<br>
+- <a href="http://www.generation5.org/news.asp?Action=Full&amp;ID=768">Happy New Year 2007</a> (02/01/2007)<br>
+- <a href="http://www.generation5.org/news.asp?Action=Full&amp;ID=767">Where has Generation5 Gone?!</a> (04/11/2005)<br>
+- <a href="http://www.generation5.org/news.asp?Action=Full&amp;ID=766">NeuroEvolving Robotic Operatives (NERO)</a> (25/06/2005)<br>
+- <a href="http://www.generation5.org/news.asp?Action=Full&amp;ID=765">Senior Next-Gen Console Programmer at Infinity Ward</a> (25/06/2005)<br>
+
+</td>
+</tr>
+</tbody></table>
+<p>
+<table class="Box" cellpadding="5" cellspacing="0" width="180">
+<tbody><tr>
+  <td class="BoxHeader"><a style="color: white;" href="http://www.generation5.org/whatsnew.asp">What's New?</a></td>
+</tr>
+<tr>
+  <td class="BoxMain">
+- <a href="http://www.generation5.org/content/2002/bp.asp" title="BP is a difficult algorithm to grasp at the best of times&#8230;this tutorials aims to provide a simple, but effective, introduction to back-propagation. (Articles)">Back-propagation for the Uninitiated</a> (10/04/2007)<br>
+- <a href="http://www.generation5.org/content/1999/perceptron.asp" title="Perceptrons are the simplest type of neural network. (Articles)">Perceptrons</a> (09/04/2007)<br>
+- <a href="http://www.generation5.org/content/2007/bacteria.asp" title="Looks at how to model bacterium and the fractal formations they make using the Generation5 JDK. (Articles)">Modelling Bacteria using the Generation5 JDK</a> (01/04/2007)<br>
+- <a href="http://www.generation5.org/content/2005/MobES.asp" title="Regarding to the usability and the important of the computers to the users, and the least number of the expertise in this field, a system called MobES been develop to help the MSI's motherboard users. (Articles)">MobES Expert System</a> (26/06/2005)<br>
+- <a href="http://www.generation5.org/content/2005/CarMaintenance.asp" title="This expert system is hoped to help those who are in need of guides to deal with their car's problems. (Articles)">Expert System for Car Maintenance and Troubleshooting</a> (26/06/2005)<br>
+
+  </td>
+</tr>
+</tbody></table>
+
+
+
+    </p></td>
+  </tr>
+</tbody></table>
+
+
+
+
+<br clear="all">
+<p class="GreyLegal" align="center">
+All content copyright © 1998-2007, Generation5 unless otherwise noted.<br>
+- <a href="http://www.generation5.org/help.asp?Query=Privacy">Privacy Policy</a> - Legal - Terms of Use -<br>
+</p>
+<p>
+<script language="JavaScript">
+<!--
+var SymRealOnLoad;
+var SymRealOnUnload;
+
+function SymOnUnload()
+{
+  window.open = SymWinOpen;
+  if(SymRealOnUnload != null)
+     SymRealOnUnload();
+}
+
+function SymOnLoad()
+{
+  if(SymRealOnLoad != null)
+     SymRealOnLoad();
+  window.open = SymRealWinOpen;
+  SymRealOnUnload = window.onunload;
+  window.onunload = SymOnUnload;
+}
+
+SymRealOnLoad = window.onload;
+window.onload = SymOnLoad;
+
+//-->
+</script>
+
+</p></body></html>

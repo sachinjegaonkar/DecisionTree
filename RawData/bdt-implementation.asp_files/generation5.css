@@ -1,0 +1,103 @@
+
+/* 
+   Generation5 Stylesheet
+
+   ----------------------------------------------------------
+   Stylesheet Author    James Matthews
+   Version              1.0
+   Created              9 June 2003
+   Last-Modified        23 December 2003
+   Stylesheet URL       http://www.generation5.org/include/generation5.css
+   --------------------------------------------------------
+
+   This stylesheet supports both screen and print media, allowing
+   any Generation5 page to be printed reasonably. W3C validated.
+   
+*/
+
+@media screen,print {
+ A		 { color:#00007f;font-style:normal;background-color:transparent; }
+ A:hover	 { color:red;text-decoration:underline;background-color:transparent; }
+ A:visited	 { text-decoration:none; }
+ H1    { 
+     font-weight:normal;
+     font-family:Verdana,Sans-serif;
+     margin-top:5px;
+     padding-bottom:5px;
+     font-size:18pt;
+     color:black;
+     border-bottom:1px dashed #cfcfcf;
+     background-color:transparent;
+  }
+
+ H3   { 
+     font-family:Verdana, Sans-serif;
+     font-size:10pt;
+     margin-bottom:0.2em;
+     font-weight:bold
+ }
+ H5		 { font-family:Tahoma, Sans-serif;font-weight:bold;border-bottom:0.1em solid black;margin-bottom:0.2em; }
+ Table		 { font-family:Tahoma, Sans-serif;font-size:10pt; }
+ Table.Bdr	 { border:solid 1px black; margin-top:2em; }
+ Table.BdrArticle { border-width:thin;border-color:#EFEFEF #AAAAAA #AAAAAA #EFEFEF;border-style:solid; }
+ Table.Glsy	 { border-width:thin;border-color:#7F7F7F #000000 #000000 #7F7F7F;border-style:solid; }
+ Table.Glsy A{ background-color: }
+ Body		 { font-family:Tahoma, Sans-serif;font-size:10pt;margin:0px 0px 0px 0px; }
+ Img     	 { border-color:black; }
+ Table I	 { font-family:Arial; }
+
+ .SmallText	 { font-family:Tahoma, Sans-serif;font-size:8pt; }
+ .SmallText2 { font-family:Tahoma, Sans-serif;font-size:8pt;line-height:14pt }
+ .NewsHeader { font-size:10pt;font-family:Tahoma, Sans-serif;font-weight:bold }
+ .NewsSubmit { font-size:8pt; font-family:Tahoma, Sans-serif;color:#6F6F6F;background-color:transparent; }
+ .ArticleHdr { font-family:Tahoma, Sans-serif;font-size:12pt;font-weight:bold }
+ .Heading    { 
+     font-family:Verdana,Sans-serif;
+     margin-top:5px;
+     padding-bottom:5px;
+     font-size:18pt;
+     color:black;
+     border-bottom:1px dashed #cfcfcf;
+     background-color:transparent;
+  }
+ .IntQuote   { font-weight:bold;font-size:12pt;color:#00006F;margin-left:10px;background-color:white; }
+ .SmallPrint { color:#888888;font-family:Verdana, Sans-serif;font-size:8pt;text-align:center;background-color:transparent; }
+
+A.ReviewScore        { color:#7f0000;font-size:250%;background-color:transparent; }
+A.ReviewScore:hover  { color:#7f0000;text-decoration:underline;background-color:transparent; }
+
+ TABLE.Box   { border:1px solid black; border-color: #808080 black black #808080;margin:5px;}
+ .BoxMain    { background-color:#f5f5f5;font-family:Tahoma, Sans-serif;font-size:8pt;color:black; }
+ .BoxMain:Hover { font-size:12pt; background-colour:#ff0000; }
+ .FeaturedLink       { color:black;text-decoration:none;background-color:transparent; }
+ .FeaturedLink:hover { color:black;text-decoration:underline;background-color:transparent; }
+
+  .FpFeature       { font-weight:bold;color:black;background-color:transparent; }
+  .FpFeature:hover { color:#7f7f7f;background-color:transparent; }
+
+  .BoxHeader	   { background-color:#306090;font-family:Tahoma, Sans-serif;font-size:8pt;color:white;font-weight:bold;border-bottom:thin solid orange; }
+  TD.BoxHeader A     { color:white;text-decoration:none;background-color:#306090;border:none; }
+ A.BoxHeader       { color:white;text-decoration:none;background-color:#306090;border:none; }
+  A.BoxHeader:hover { text-decoration:underline;color:white;background-color:#306090; }
+ P.GreyLegal A:hover { color:black;text-decoration:underline;background-color:transparent; }
+  P.GreyLegal      { font-size:7pt;color:#7f7f7f;font-family:Verdana, Sans-serif;background-color:transparent;display:block; }
+
+  .LaRating		   { display:inline;font-weight:bold;color:#7f0000;background-color:transparent; }
+  .WhatNewFP	   { color:white;background-color:#306090;font-weight:bold;text-decoration:none; }
+  .WhatNewFP:hover { color:white;background-color:#306090;font-weight:bold;text-decoration:underline; }
+
+  .Silent		   { color:black;text-decoration:none; }
+  .Silent:hover	   { text-decoration:underline;color:black; }
+
+  .NewsStd		   { background-color:#f0f0f0; }
+  .NewsNew		   { background-color:#d0d0d0; }
+}
+
+@media screen {
+  .GlPopup		 { cursor:help;background-color:transparent; }
+}
+
+@media print {
+ .NoPrint { display:none; }
+ Table.Glsy { display:none; }
+}

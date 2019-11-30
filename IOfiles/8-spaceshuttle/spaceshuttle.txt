@@ -1,0 +1,26 @@
+
+INSERT INTO spaceshuttle(rings , thermaldistress , temperature, pressure , class)VALUES 
+
+('six', 'zero',  '61...70',  'low',  'acc'),
+('six', 'one',   '61...70',  'low',  'acc'), 
+('six', 'zero',  '61...70',  'low',  'acc'),     
+('six', 'zero',  '61...70',  'low',  'acc'),
+('six', 'zero',  '61...70',  'low',  'acc'),
+('six', 'zero',  '>70',      'low',  'acc'),
+('six', 'zero',  '>70',      'medium','acc'), 
+('six', 'zero',  '>70',      'medium','acc'),
+('six', 'one',   '<=60',     'high', 'acc'),
+('six', 'one',   '61...70',  'high', 'acc'),
+('six', 'one',   '61...70',  'high', 'acc'),
+('six', 'zero',  '>70',      'high', 'acc'),
+('six', 'zero',  '61...70',  'high', 'acc'),
+('six', 'two',   '<=60',     'high', 'unacc'),
+('six', 'zero',  '61...70',  'high', 'acc'), 
+('six', 'zero',  '>70',      'high', 'acc'),
+('six', 'zero',  '61...70',  'high', 'acc'),
+('six', 'zero',  '>70',      'high', 'acc'),
+('six', 'zero',  '>70',      'high', 'acc'),
+('six', 'zero',  '>70',      'high', 'unacc'),
+('six', 'two',   '>70',      'high', 'unacc'), 
+('six', 'zero',  '>70',      'high', 'acc'), 
+('six', 'one',   '<=60',     'high', 'acc');                               

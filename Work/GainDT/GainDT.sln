@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual Studio 2005
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GainDT", "GainDT.vcproj", "{38705BB8-C172-4B23-9A9B-ED222380E69A}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GainDBInterface", "GainDBInterface\GainDBInterface.vcproj", "{BEDCE898-A056-46A0-9B33-464F0829615E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{38705BB8-C172-4B23-9A9B-ED222380E69A}.Debug|Win32.ActiveCfg = Debug|Win32
+		{38705BB8-C172-4B23-9A9B-ED222380E69A}.Debug|Win32.Build.0 = Debug|Win32
+		{38705BB8-C172-4B23-9A9B-ED222380E69A}.Release|Win32.ActiveCfg = Release|Win32
+		{38705BB8-C172-4B23-9A9B-ED222380E69A}.Release|Win32.Build.0 = Release|Win32
+		{BEDCE898-A056-46A0-9B33-464F0829615E}.Debug|Win32.ActiveCfg = Debug|Win32
+		{BEDCE898-A056-46A0-9B33-464F0829615E}.Debug|Win32.Build.0 = Debug|Win32
+		{BEDCE898-A056-46A0-9B33-464F0829615E}.Release|Win32.ActiveCfg = Release|Win32
+		{BEDCE898-A056-46A0-9B33-464F0829615E}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

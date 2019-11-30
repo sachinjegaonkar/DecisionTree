@@ -1,0 +1,55 @@
+<html><head><title>Process a Decision Tree using XML/XSLT</title><!-- base href="http://www.sabufrancis.com/" --><style type="text/css" media="print">@import "misc/print.css";</style></head><body><h1 id="155" name="155" class="book-h1">Process a Decision Tree using XML/XSLT</h1><p>Decision tree is an easy to understand management tool which can sometimes help take intelligent decisions. </p>
+<p>A decision tree, as the name suggests, is a metaphorical tree which captures the various branches of options one could pursue</p>
+<p>Often in our lives, we are caught at a cross-roads trying to decide
+which of several options we could pursue. We pause and consider what we
+can get involved in at that uncertainity point. We could branch into
+any one of several options. Once we pursue any of those options; we
+would then come to another node in the decision tree where we are again
+caught trying to decide which course of action to follow</p>
+<p>Once we reach a branch where we have no further options to explore;
+then we need to check the various outcome of having reached that point
+in our life</p>
+<p>Analysing a decision tree is extremely simple. Its nothing much more
+than a cost-benefit analysis; considering the probabilities of various
+outcomes that one could reach. Read <a href="http://www.mindtools.com/pages/article/newTED_04.htm" title="Opens in a new window" target="_blank">this article at Mindtools.com</a> for a thorough discussion and explanation of how the mathematics works</p>
+<p>A decision tree can be easily captured as an XML file. I'll post the
+DTD for it later on here when I get the time; but here is the English
+explanation:</p>
+<p>This XML file consists essentially of two types of elements: one is
+&lt;decision&gt; &lt;/decision&gt; and the other is a singular element
+&lt;outcome&gt; A <i>decision</i> element can contain one or more <i>decision</i> elements or it can contain one or more <i>outcome</i> elements. If it contains the latter, then it cannot contain any <i>decision</i> elements. Moreover, such a decision element must contain an attribute called <i>cost</i>. </p>
+<p>The <i>outcome</i> element contains attributes called <i>probability</i> and <i>returns</i>. These terms are self explanatory once you read the Mindtools article</p>
+<p>Here is a <a href="http://www.sabufrancis.com/decisiontree.zip">zip file</a>
+containing the XML file containing the sample data which was used in
+the mindtools article. I've written a XSL file which can process such
+an XML file to do the decision tree analysis. That XSL file is also
+placed in the zip file.</p>
+<p>You can easily modify the XML file to suit your own needs. Also, the
+XSL file can also be modified to bring in more sophistication in the
+analysis and reporting (e.g. HTML output)</p>
+<p><b>How to use the zip file?</b></p>
+<ul>
+<li>Extract the zip file to a folder</li>
+<li>Download a suitable XSLT processor (MSXSL can be downloaded from <a href="http://msdn.microsoft.com/library/default.asp?url=/library/en-us/dnxml/html/msxsl.asp" title="Opens in a new window" target="_blank">the MSDN site</a>  There are other XSLT processors too)</li>
+<li>Open a console window on your computer (Run "cmd" in Windows 2000 or XP)</li>
+<li>Change directory to the folder where you've extracted the two files from the ZIP file</li>
+<li>Run the XSLT processor so that the XSL does its magic on the XML file</li>
+</ul>
+<p>... or a simpler method:</p>
+<ul>
+<li>Download cooktop from <a href="http://www.xmlcooktop.com/" title="Opens in a new window" target="_blank">http://www.xmlcooktop.com</a> and install it</li>
+<li>Load the XML file and XSL file into cooktop</li>
+<li>Press F5</li>
+<li>Enjoy looking at the results</li>
+</ul>
+<p>If you use the cooktop method, and if you can be bold enough to
+modify the XML file to suit your own decision trees, then you can
+easily use it as an environment to analyse your own decisions.</p>
+<p>Note: There are several downside to a decision making tool such as a
+Decision tree. The most glaring of them is that the accuracy of the
+decision tree depends on predicting the returns on outcomes and the
+value of the probability of reaching those outcomes. So don't trust the
+tool blindly. Spend quite some time thinking about the values you want
+to enter</p>
+<p>Happy decision making!</p>
+</body></html>

@@ -1,0 +1,166 @@
+
+/* -=-=-=-=-=-=-=-=-=-=-=-=-=-=- *
+ * Generation5 CSS               *
+ *                               *
+ * Author:  James Matthews       *
+ * Version: 2.0                  *
+ * Updated: 15:11 06/09/2004     *
+ *                               *
+ * -=-=-=-=-=-=-=-=-=-=-=-=-=-=- */
+
+@import url(toolbar.css);
+@import url(content.css);
+@import url(print-only.css);
+@import url(screen-only.css);
+
+@media screen, print {
+ BODY {
+   background-color:#f5f5f5;
+   font-family:Verdana,Sans-serif;
+   font-size:10pt;
+   line-height:12pt;
+   margin:0,0,0,0;
+   padding:0,0,0,0;
+ }
+
+ A { color:#306090;text-decoration:underline;background-color:opaque; }
+ A:hover{ color:red;text-decoration:underline; }
+ A:active { color:black; }
+ A:visited { color:#306090;text-decoration:none; }
+ A:visited:hover { color:red;text-decoration:underline; }
+
+ H1 { 
+    font-size:12pt;
+    color:#306090; }
+ H2 {
+    color:#666666;
+    letter-spacing:0.25em;
+    font-family:Verdana, Sans-serif;
+    font-size:12pt;
+    padding-bottom:3px;
+    font-weight:bold;
+    border-bottom:1px dashed #FFCC00; }
+ H3 { 
+    font-size:11pt; 
+    color:#505050;
+    margin-bottom:3px; }
+ 
+ #headerArea  { background-color:white;padding:0px;margin:0px; }
+ #footerArea  { background-color:white;border-top:10px solid #efefef; }
+ #adArea      { background:url(/images/logoFiller.png); }
+ #contentArea { 
+    background-color:white;
+    vertical-align:top;
+    padding:0.0em;
+    padding-left:15px;
+    padding-top:5px; }
+ #frontpageArea { 
+    background-color:white;
+    vertical-align:top;
+    padding:0.0em;
+    padding-left:10px;
+    padding-top:10px;
+    padding-right:10px;
+ }
+
+ #footerArea P { font-family:Tahoma;
+                 font-size:8pt;
+                 text-align:center;
+                 line-height:12pt;
+                 padding-bottom:0.1em;
+                 color:#7f7f7f; }
+
+ .boxType1 {
+    border:1px dashed #E08020;
+    margin:20px;
+    padding:0.75em;
+    background-color:#efefef;
+    color:black; }
+ .boxType1 A { color:#7f7f7f; }
+
+ #LatestNews { 
+    font-size:11pt;
+    font-weight:bold;
+    text-transform:uppercase;
+    letter-spacing:3px;
+    padding-left:5px; }
+ #LastUpdated {
+    font-size:8pt;
+    padding-bottom:3px;
+    margin-left:5px;
+    margin-right:5px;
+    color:#E08020;
+    border-bottom:1px dashed #cfcfcf; }
+
+ .NewsItem {
+    margin:5px;
+    margin-bottom:20px;
+    padding:2px; }
+ .NewsTitle {
+    padding-top:5px;
+    padding-left:2px;
+    font-weight:bold;
+    background-color:#efefef;
+    border:1px solid #cfcfcf; }
+ .NewsDateTime {
+    padding-left:2px;
+    padding-bottom:5px;
+    font-weight:normal;
+    font-size:8pt;
+    color:#7f7f7f; }
+ .NewsOptions {
+    font-size:8pt;
+    margin-top:20px; }
+ .NewsItem P { margin-top:2px; margin-left:2px; margin-bottom:10px; }
+ 
+ FORM { margin-top:5px; }
+
+ #padMe { padding-left:5px;padding-top:5px; }
+ 
+ TABLE.contentList { font-size:10pt; }
+ TABLE.contentList TR TD {
+    border:1px dashed orange;
+    background-color:#efefef; }
+ TABLE.contentList TR TD A { 
+   color:black;
+   font-weight:bold; }
+ TABLE.contentList TR TD A:visited { color:black; }
+
+ TABLE.contentList TR TD .SubCategories { font-size:8pt; }
+ TABLE.ContentList TR TD .SubCategories A {
+    text-decoration:underline;
+    color:#306090;
+    font-weight:normal; }
+ TABLE.ContentList TR TD .SubCategories A:visited { color:#306090; } 
+ TABLE.ContentList TR TD .SubCategories A:hover { 
+    text-decoration:underline;
+    color:red; }
+
+ .contentListing { 
+    font-size:10pt;
+    border:1px solid #dfdfdf;
+    border-color:#dfdfdf #afafaf #afafaf #dfdfdf; }
+ .contentListing TR TH {
+    height:25px;
+    padding:5px;
+    font-weight:bold;font-size:8pt;
+    background-image:url("/images/cl-headBack.png");
+    text-align:left; }
+ .contentListing TR TD {
+    padding:5px;
+ }
+
+ .New { color:red;font-size:8pt; }
+ .Recent { color:#7f0000;font-size:8pt; }
+ .Desc { font-size:8pt; }
+ .BigSearchBox { font-size:12pt;font-weight:normal;color:black;font-family:Verdana; }
+ .NoPreMargin { margin-top:0px;margin-bottom:12px; }
+
+ FORM TABLE { font-size:10pt; }
+
+ .highlight { background-color:yellow;color:black; }
+
+ .SeeAlso.cr  { font-size:7pt;color:#007f00;letter-spacing:0.1em;text-transform:uppercase; }
+ .SeeAlso.art { font-size:7pt;color:#7f0000;letter-spacing:0.1em;text-transform:uppercase; }
+ .SeeAlso.ex  { font-size:7pt;color:#00007f;letter-spacing:0.1em;text-transform:uppercase; }
+}

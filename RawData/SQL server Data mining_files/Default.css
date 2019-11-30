@@ -1,0 +1,537 @@
+/*****************************
+  Default Style Elements
+*****************************/
+
+body
+{
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	margin-left: 0px;
+	background-color: #FFFFFF;
+	font-size: 8px;
+	color: #333333;
+	FONT: normal 8pt verdana, arial, helvetica, sans-serif; 
+}
+
+TABLE
+{
+	FONT: normal 100% verdana, arial, helvetica, sans-serif
+}
+
+a {color:#993300; text-decoration: none; font-size: 12px;}
+a:active {text-decoration: none;}
+a:hover {color:#993300; text-decoration:underline;}
+
+.FooterText {font-family: verdana, arial, helvetica, sans-serif; font-size: 11px;}
+
+
+/*********************************
+  Standard Style Elements
+  -----------------------
+  The following style elements are defined for every theme. When 
+  creating a new theme, you should copy these elements.
+***********************************/
+
+/* Section Menu */
+
+.SectionMenu {font-family: verdana, arial, helvetica, sans-serif; color:#000000; font-size: 9px;}
+.SectionMenu a {color: #000000; text-decoration: none; font-size: 10px; font-weight: normal;}
+.SectionMenu a:hover {color: #000000; text-decoration: underline;}
+
+
+.SectionMenu2 {font-family: verdana, arial, helvetica, sans-serif; font-size: 11px;}
+.SectionMenu2 a {color: #000000; text-decoration: none; font-size: 11px;}
+.SectionMenu2 a:hover {text-decoration: none;}
+
+
+/* Topic Menu */
+
+.TopicMenu {font-family: verdana, arial, helvetica, sans-serif; font-size: 11px;}
+.TopicMenu a {color:#3366CC; text-decoration: none; ont-size: 11px; font-weight: bold;}
+.TopicMenu a:hover {text-decoration: underline;}
+
+
+/* BreadCrumb Navigation */
+
+.BreadCrumb {font-family: Arial; Verdana; Sans-serif; color: #000000; font-size: 10px; }
+.BreadCrumb a { color: #000000; text-decoration: none;font-size: 10px;}
+.BreadCrumb a:hover {color: #000000; text-decoration: underline;}
+
+
+
+/* UserLogin */
+
+.UserLogin {font-family: verdana, arial, helvetica, sans-serif; font-size: 11px; font-weight: bold;}
+.UserLogin a {color: #993300; text-decoration: none; font-size: 11px; font-weight: bold;}
+.UserLogin a:hover {color: #FFFFFF;}
+
+
+/* Search */
+
+.Search {font-family: verdana, arial, helvetica, sans-serif; font-size: 10px; font-weight: normal;}
+.Search a {text-decoration: none; font-size: 12px; font-weight: bold;}
+.Search a:hover {text-decoration: none;}
+
+/***************************
+  Modules 
+***************************/
+
+
+/* Articles */
+
+.ArticleSection_SectionTitle {font-family: Verdana; font-weight: bold; font-size: 21px; color:#EE8040;}
+.ArticleSection_SectionDescription {font-family: verdana, arial, helvetica, sans-serif; font-size: 12px; font-weight: normal;}
+.ArticleSection_ListTable {border: thick solid #993300 2px;}
+.ArticleSection_ListItem {background-color:#EFEFEF; font-family: verdana, arial, helvetica, sans-serif; font-size: 12px; font-weight: normal;}
+.ArticleSection_ListItem2 {background-color:#FFFFFF;}
+.ArticleSection_ListAlternatingItem {background-color:#EFEFEF;}
+.ArticleSection_ListAlternatingItem2 {background-color:#EFEFEF;}
+.ArticleSection_ListTitle {font-family: Verdana; font-weight: bold; font-size: 15px; font-variant: none;}
+.ArticleSection_ListAuthorLink {text-decoration: none; font-size: 12px; font-weight: normal;}
+.ArticleSection_ListBriefDescription {font-family: verdana, arial, helvetica, sans-serif; font-size: 12px; font-weight: normal;}
+.ArticleSection_ListReadMoreLink {text-decoration: none; font-size: 12px; font-weight: normal;}
+.ArticleSection_NoArticles {font-family: verdana, arial, helvetica; font-size: 12px; color: #CC0000;}
+
+.Article_Table {border-top: thick solid #993300 5px; border-bottom: thick solid #993300 5px;}
+.Article_IntroCell {background-color:#EFEFEF;} 
+.Article_BodyCell {background-color:;}
+.Article_Title {font-family: Verdana; font-weight: bold; font-size: 17px;}
+.Article_AuthorLink {color:#000000; text-decoration: none; font-size: 12px; font-weight: normal;}
+.Article_BriefDescription {font-size: 12px; font-style: italic;}
+.Article_FullDescription {font-size: 12px;color: #333333}
+
+/* Books */
+
+.BookSection_SectionTitle {font-family: Verdana; font-weight: bold; font-size: 21px; color:#EE8040;}
+.BookSection_SectionDescription {color: #666666; font-family: verdana, arial, helvetica, sans-serif; font-size: 12px; font-weight: normal;}
+.BookSection_ListTable {background-color:#FFFFFF; border: thick solid #993300 1px;}
+.BookSection_ListItem {background-color:#FFFFFF;}
+.BookSection_ListItem2 {background-color:#EFEFEF;}
+.BookSection_ListAlternatingItem {background-color:#EFEFEF;}
+.BookSection_ListAlternatingItem2 {background-color:#EFEFEF;}
+.BookSection_ListLabel {font: 12pt verdana;}
+.BookSection_ListTitle {font-family: Verdana; font-weight: bold; font-size: 19px; font-variant: none;}
+.BookSection_ListAuthor {font-size: 12px; font-style: italic;}
+.BookSection_ListPublisher {font-size: 12px; font-style: italic;}
+.BookSection_ListPublicationDate {font-size: 12px; font-style: italic; }
+.BookSection_ListBriefDescription {font-family: verdana, arial, helvetica, sans-serif; font-size: 12px; font-weight: normal;}
+.BookSection_ListReadMoreLink {text-decoration: none; font-size: 12px; font-weight: normal;}
+.BookSection_NoBooks {font-family: verdana, arial, helvetica; font-size: 12px; color: #CC0000;}
+
+.Book_Table {border-top: thick solid #993300 5px; border-bottom: thick solid #993300 5px;}
+.Book_IntroCell {background-color:#EFEFEF;} 
+.Book_BodyCell {background-color:#FFFFFF;}
+.Book_Label {font-size: 12px;}
+.Book_Title {font-family: Verdana; font-weight: bold; font-size: 19px; font-variant: none;}
+.Book_Author {font-size: 12pt;} 
+.Book_BriefDescription {font-size: 12px; font-style: italic;}
+.Book_FullDescription {font-size: 12px;color: #333333}
+
+
+/* Downloads */
+
+.DownloadSection_SectionTitle {font-family: Verdana; font-weight: bold; font-size: 21px; color:#EE8040;}
+.DownloadSection_SectionDescription {font-family: verdana, arial, helvetica, sans-serif; font-size: 12px; font-weight: normal;}
+.DownloadSection_ListTable {border: thick solid #993300 2px;}
+.DownloadSection_ListItem {background-color:#EFEFEF;}
+.DownloadSection_ListItem2 {background-color:#FFFFFF;}
+.DownloadSection_ListAlternatingItem {background-color:#EFEFEF;}
+.DownloadSection_ListAlternatingItem2 {background-color:#EFEFEF;}
+.DownloadSection_ListTitle {font-family: Verdana; font-weight: bold; font-size: 15px; font-variant: none;}
+.DownloadSection_ListAuthorLink {color: #3366CC; text-decoration: none; font-size: 12px; font-weight: normal;}
+.DownloadSection_ListFileSize {font-family: Trebuchet, verdana, arial, helvetica; font-size: 12px; color="#CC0000"}
+.DownloadSection_ListBriefDescription {font-family: verdana, arial, helvetica, sans-serif; font-size: 12px; font-weight: normal;}
+.DownloadSection_ListReadMoreLink {text-decoration: none; font-size: 12px; font-weight: normal;}
+.DownloadSection_ListDownloadLink {text-decoration: none; font-size: 12px; font-weight: normal;}
+.DownloadSection_NoDownloads {font-family: verdana, arial, helvetica; font-size: 12px; color: #CC0000;}
+
+.Download_Table {border-top: thick solid #993300 5px; border-bottom: thick solid #993300 5px;}
+.Download_IntroCell {background-color:#EFEFEF;} 
+.Download_BodyCell {background-color:#EFEFEF;}
+.Download_Label {font-family: Verdana; font-size: 15px; font-weight: bold; font-variant: none;}
+.Download_Title {font-size: 12px;}
+.Download_FileSize {font-size: 12px;}
+.Download_BriefDescription {font-size: 12px;}
+.Download_FullDescription {font-size: 12px;color: #333333}
+.Download_AuthorLink {text-decoration: none; font-size: 12px; font-weight: normal;}
+.Download_DownloadLink {text-decoration: none; font-size: 12px; font-weight: normal;}
+
+
+
+/* Events */
+
+.EventSection_SectionTitle {font-family: Verdana; font-weight: bold; font-size: 21px; color:#EE8040;}
+.EventSection_SectionDescription {font-family: verdana, arial, helvetica, sans-serif; font-size: 12px; font-weight: normal;}
+.EventSection_ListTable {border: thick solid #993300 2px;}
+.EventSection_ListItem {background-color:#FFFFFF;}
+.EventSection_ListItem2 {background-color:#EFEFEF;}
+.EventSection_ListAlternatingItem {background-color:#EFEFEF;}
+.EventSection_ListAlternatingItem2 {background-color:#EFEFEF;}
+.EventSection_ListTitle {font-family: Verdana; font-size: 15px; font-weight: bold; font-variant: none;}
+.EventSection_ListDate {font-size: 12px; font-weight: bold; font-variant: none;}
+.EventSection_ListBriefDescription {font-family: verdana, arial, helvetica, sans-serif; font-size: 12px; font-weight: normal;}
+.EventSection_ListReadMoreLink {text-decoration: none; font-size: 14px; font-weight: normal;}
+.EventSection_ListNotVisible {background-color:#CCCCFF;font-size: 12px; font-style: italic;}
+.EventSection_NoBooks {font-family: verdana, arial, helvetica; font-size: 12px; color: #CC0000;}
+
+.Event_Table {border-bottom: thick solid #993300 5px; border-top: thick solid #993300 5px;}
+.Event_IntroCell {background-color:#FFFFFF;} 
+.Event_BodyCell {background-color:#FFFFFF;}
+.Event_Title {font-family: Verdana; font-size: 15px; font-weight: bold; font-variant: none;}
+.Event_Date {font-size: 12px; font-weight: bold; font-variant: none;}
+.Event_BriefDescription {font-size: 12px; font-style: italic;}
+.Event_FullDescription {font-size: 12px;color: #333333}
+
+
+/* Links */
+
+.LinkSection_SectionTitle {font-family: Verdana; font-weight: bold; font-size: 21px; color:#EE8040;}
+.LinkSection_SectionDescription {font-family: verdana, arial, helvetica, sans-serif; font-size: 12px; font-weight: normal;}
+.LinkSection_ListTable {border: none;}
+.LinkSection_ListItem {border-top: thick dashed #993300 1px; background-color:#FFFFFF;}
+.LinkSection_ListItem2 {background-color:#FFFFFF;font-family: verdana, arial, helvetica, sans-serif; font-size: 12px; font-weight: normal;}
+.LinkSection_ListAlternatingItem {border-top: thick dashed #993300 1px; background-color:#EFEFEF;}
+.LinkSection_ListAlternatingItem2 {background-color:#FFFFFF;}
+.LinkSection_ListTitle {font-family: Verdana; font-weight: bold; font-size: 15px; font-variant: none; }
+.LinkSection_ListBriefDescription {font-family: verdana, arial, helvetica, sans-serif; font-size: 12px; font-weight: normal;}
+/*.LinkSection_ListCommentLink {color: #3366CC; text-decoration: none; font-size: 12px;}*/
+.LinkSection_ListCommentLink {text-decoration: none; font-size: 12px;}
+.LinkSection_NoLinks {font-family: verdana, arial, helvetica; font-size: 12px; color: #CC0000;}
+.LinkSection_ListTable {border: thick solid #993300 2px;}
+.LinkSection_AlternateListTable {border: thick solid #993300 2px;}
+
+.Link_Table {border-top: thick solid #993300 5px;}
+.Link_IntroCell {background-color:#FFFFFF;} 
+.Link_BodyCell {background-color:#FFFFFF;}
+.Link_Link {font-family: Verdana; font-size: 15px; font-weight: bold; font-variant: none;}
+.Link_BriefDescription {font-size: 12px;}
+
+
+/* Parent Section */
+
+.ParentSection_SectionTitle {font-family: Verdana; font-weight: bold; font-size: 21px; color: #EE8040;}
+.ParentSection_SectionDescription {font-family: verdana, arial, helvetica, sans-serif; font-size: 12px; font-weight: normal;}
+.ParentSection_ListTable {border: none;}
+.ParentSection_ListItem {border-top: thick dashed #993300  1px; background-color:#FFFFFF;}
+.ParentSection_ListItem2 {background-color:#993300 ;font-family: verdana, arial, helvetica, sans-serif; font-size: 12px; font-weight: normal;}
+.ParentSection_ListAlternatingItem {border-top: thick dashed #993300 1px; background-color:#FFFFFF;}
+.ParentSection_ListAlternatingItem2 {background-color:#FFFFFF;}
+.ParentSection_ListTitleLink {text-decoration: none; font-size: 12px; font-weight: normal;}
+.ParentSection_ListBriefDescription {font-family: verdana, arial, helvetica, sans-serif; font-size: 12px; font-weight: normal;}
+
+
+/* Photo Gallery */
+
+.PhotoSection_SectionTitle {font-family: Verdana; font-weight: bold; font-size: 21px; color:#EE8040;}
+.PhotoSection_SectionDescription {font-family: verdana, arial, helvetica, sans-serif; font-size: 12px; font-weight: normal;}
+.PhotoSection_SpacerCell {background-color: #993300;}
+.PhotoSection_ListTable {border: none;}
+.PhotoSection_ListItem {border-top: thick dashed #cccccc 1px; background-color:#FFFFFF;}
+.PhotoSection_ListItem2 {background-color:#993300;font-family: verdana, arial, helvetica, sans-serif; font-size: 12px; font-weight: normal;}
+.PhotoSection_ListAlternatingItem {border-top: thick dashed #993300 1px; background-color:#FFFFFF;}
+.PhotoSection_ListAlternatingItem2 {background-color:#993300;}
+.PhotoSection_ListTitle {font-family: Verdana; font-size: 15px; font-weight: bold; font-variant: none;}
+.PhotoSection_ListBriefDescription {font-family: verdana, arial, helvetica, sans-serif; font-size: 12px; font-weight: normal;}
+.PhotoSection_ListReadMoreLink {text-decoration: none; font-size: 12px; font-weight: normal;}
+.PhotoSection_NoPhotos {font-family: verdana, arial, helvetica; font-size: 12px; color: #CC0000;}
+
+.Photo_Table {border-top: thick solid #993300 5px; border-bottom: thick solid #993300 5px;}
+.Photo_IntroCell {background-color:#FFFFFF;} 
+.Photo_BodyCell {background-color:#EFEFEF;}
+.Photo_Title {font-family: Verdana; font-size: 15px; font-weight: bold; font-variant: none;}
+.Photo_AuthorLink {text-decoration: none; font-size: 12px; font-weight: normal;}
+.Photo_DateCreated {font-size: 12px;}
+.Photo_BriefDescription {font-size: 12px; font-style: italic;}
+.Photo_FullDescription {font-size: 12px;}
+
+
+/* Comments */
+
+.Comments_ListTable {border: thick solid #EFEFEF 2px;  color:#EE8040;}
+.Comments_ListItem {background-color:#EFEFEF;}
+.Comments_ListItem2 {background-color:#FFFFFF;}
+.Comments_ListAlternatingItem {border: thick solid #993300 2px;}
+.Comments_ListAlternatingItem2 {background-color:#EFEFEF;}
+.Comments_ListTitle {font-family: Verdana; font-size: 15px; font-weight: bold; font-variant: none;}
+.Comments_ListTitleLink {text-decoration: none; font-size: 12px; font-weight: normal;}
+.Comments_ListAuthorLink {text-decoration: none; font-size: 12px; font-weight: normal;}
+.Comments_ListDateCreated {font-size: 12px;}
+.Comments_ListBriefDescription {font-family: verdana, arial, helvetica, sans-serif; font-size: 12px; font-weight: normal;}
+.Comments_ListReplyLink {text-decoration: none; font-size: 12px; font-weight: normal;}
+
+
+.Comments_Table {border: none;}
+.Comments_IntroCell {background-color:#EFEFEF;} 
+.Comments_BodyCell {background-color:#EFEFEF;}
+.Comments_Title {font-family: Verdana; font-size: 15px; font-weight: bold; font-variant: none;}
+.Comments_AuthorLink {text-decoration: none; font-size: 12px; font-weight: normal;}
+.Comments_DateCreated {font-size: 12px;}
+.Comments_BriefDescription {font-size: 12px;}
+.Comments_ParentLink {text-decoration: none; font-size: 12px; font-weight: normal;}
+
+
+/* Topics */
+
+.Topics_TopicTitle {font-family: Verdana; font-weight: bold; font-size: 21px;  color:#EE8040;}
+.Topics_TopicDescription {font-family: verdana, arial, helvetica, sans-serif; font-size: 12px; font-weight: normal;}
+.Topics_ListTable {border: border-top: thick solid #993300 3px; border-bottom: thick solid #993300 1px;border-left: thick solid #993300 1px;border-right: thick solid #993300 1px;}
+.Topics_ListItem {background-color:#EFEFEF;}
+.Topics_ListItem2 {background-color:#FFFFFF;}
+.Topics_ListAlternatingItem {border-top: thick dashed #cccccc 1px; background-color:#EEEEEE;}
+.Topics_ListAlternatingItem2 {background-color:#EFEFEF}
+.Topics_ListTitle {font-family: Verdana; font-size: 15px; font-weight: bold; font-variant: none;}
+.Topics_ListTitleLink {text-decoration: none; font-size: 12px; font-weight: normal;}
+.Topics_ListAuthorLink {text-decoration: none; font-size: 12px; font-weight: normal;}
+.Topics_ListDateCreated {font-size: 12px;}
+.Topics_ListBriefDescription {font-family: verdana, arial, helvetica, sans-serif; font-size: 12px; font-weight: normal;}
+
+/* Search */
+
+.Search_ListTable {border: none;}
+.Search_ListItem {background-color:#EFEFEF;}
+.Search_ListItem2 {background-color:#FFFFFF;}
+.Search_ListAlternatingItem {border-top: thick dashed #993300 1px; background-color:#EFEFEF;}
+.Search_ListAlternatingItem2 {background-color:#CCCCFF;}
+.Search_ListTitle {font-family: Verdana; font-size: 15px; font-weight: bold; font-variant: none;}
+.Search_ListTitleLink {text-decoration: none; font-size: 12px; font-weight: normal;}
+.Search_ListAuthorLink {text-decoration: none; font-size: 12px; font-weight: normal;}
+.Search_ListDateCreated {font-size: 12px;}
+.Search_ListBriefDescription {font-family: verdana, arial, helvetica, sans-serif; font-size: 12px; font-weight: normal;}
+.Search_NoResults {font-family: verdana, arial, helvetica; font-size: 12px; color: #CC0000;}
+
+
+/* Form */
+
+.Form_Title {font-family: Verdana; font-weight: bold; font-size: 21px;}
+.Form_Description {font-size: 12px;}
+.Form_Table {border: thick solid #993300 2px; background-color:#EFEFEF;}
+.Form_LabelRow {font-size: 12pt;}
+.Form_LabelCell {font-size: 12pt;}
+.Form_LabelText {font-size: 12pt; font-variant: none;}
+.Form_FieldRow {font-size: 12px; }
+.Form_FieldCell {font-size: 12px;}
+.Form_Field {font-size: 11px;}
+.Form_SectionRow {font-size: 12pt; color:#ffffff; background-color: #993300; font-weight:bold;}
+.Form_SectionCell {font-size: 12pt;}
+.Form_SectionText {font-size: 12pt; font-weight: bold;}
+.Form_Button {font-size: 12px;}
+.Form_HelpText {font-size: 8pt;}
+.Form_SubSectionRow {font-size: 12px;}
+.Form_SubSectionCell {font-size: 12px;}
+.Form_SubSectionText {font-size: 12px;}
+.Form_List {font-size: 12px;}
+.Form_Message {font-size: 12px; color: #CC0000}
+
+
+/* Web Box */
+
+.WebBox_ListTable {border: thick solid #DDDDDD 2px;width:100%;}
+.WebBox_ListItem {background-color: #ffffff;font-size:11px; }
+.WebBox_ListItem a:active {color: #993300; text-decoration: none; font-size: 12px;}
+.WebBox_ListItem a:link {color: #993300; text-decoration: none; font-size: 12px;}
+.WebBox_ListItem a:visited {color: #993300; text-decoration: none; font-size: 12px;}
+.WebBox_ListItem a:hover {color: #CC9900; text-decoration: none; font-size: 12px;}
+
+.WebBox_TitleText {font-family: Verdana; font-weight: bold; font-size: 14px;}
+
+.WebBox_TitleRow {font-family: Verdana; font-size: 12px; font-style:italic;}
+.WebBox_TitleCell {font-family: verdana, arial, helvetica, sans-serif; font-size: 12px;}
+.WebBox_SubText {font-family: verdana, arial, helvetica, sans-serif; font-size: 8px;}
+
+
+/* Web Service Box */
+
+.WebServiceBox_ListTable {border: thick solid #DDDDDD 2px;width:100%;}
+.WebServiceBox_ListItem {background-color: #ffffff; }
+.WebServiceBox_ServiceTitleLink {font-family: Verdana; font-size: 14px; font-weight: bold;}
+.WebServiceBox_ServiceTitleLink:hover {font-weight: bold;}
+.WebServiceBox_ServiceDescription {font-family: verdana, arial, helvetica, sans-serif; font-size: 12px;}
+.WebServiceBox_ListTitleLink:link {font-size: 8pt;}
+.WebServiceBox_ListTitleLink:visited {font-size: 8pt; }
+.WebServiceBox_ListTitleLink:hover {font-size: 8pt;}
+.WebServiceBox_ListDescription {font-family: verdana, arial, helvetica, sans-serif; font-size: 8pt; }
+.WebServiceBox_Copyright {font-family: verdana, arial, helvetica, sans-serif; font-size: 8pt;}
+.WebServiceBox_LastRefreshed {font-family: verdana, arial, helvetica, sans-serif; font-size: 8px;}
+
+
+
+/* Forum Login */
+
+.ForumLogin_SectionTitle {font-family: Verdana; font-weight: bold; font-size: 21px;  color:#EE8040;}
+.ForumLogin_SectionDescription {font-family: verdana, arial, helvetica, sans-serif; font-size: 12px; font-weight: normal;}
+.ForumLogin_LoginLink {color: #993300;}
+
+
+
+/* Discuss */
+.discussTable 
+{   
+    border:1px #013DA4 solid;
+    background-color:#FFFFFF;
+}
+
+.discussTable td
+{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 11px;
+
+
+}
+
+.discussTable th 
+{
+    height: 25px;
+    padding: 3px;
+    margin: 1px;
+    background-color: #90A1B9;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 0.7em;
+    font-weight:bold;
+}
+
+
+.discussTable a 
+{
+    color: navy;
+    font-size: 11px;
+    text-decoration:underline;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+}
+
+
+.discussCell  
+{
+    padding: 3px;
+    margin: 1px;
+    background-color: #CBCDD1;
+}
+
+
+.discussCellHilite  
+{
+    padding: 3px;
+    background-color: #D4D9EC;
+}
+
+
+
+/* HtmlTextBox */
+
+
+pre 
+{
+    word-wrap:break-word;
+    padding:5px;
+    margin-bottom:0px;
+    margin-top:0px;
+    margin-right:0px;
+    margin-left:10px;
+    background-color: #eeeeee;
+    font: 10px normal Lucida Console;
+}
+
+
+.postBodyText {padding-bottom:20px;width:500px; overflow-x:auto}
+.postBodyText p {margin:0px;}
+
+.commentText {padding-bottom:20px;width:500px; overflow-x:auto}
+.commentText p {margin:0px;}
+
+.itemCommentText {padding-bottom:20px;width:500px; overflow-x:auto}
+.itemCommentText p {margin:0px;}
+
+.articleBodyText {padding-bottom:20px;width:500px; overflow-x:auto}
+.articleBodyText p {margin:0px;}
+
+.bookFullDescription {padding-bottom:20px;width:500px; overflow-x:auto}
+.bookFullDescription p {margin:0px;}
+
+
+.downloadFullDescription {padding-bottom:20px;width:500px; overflow-x:auto}
+.downloadFullDescription p {margin:0px;}
+
+.eventFullDescription {padding-bottom:20px;width:500px; overflow-x:auto}
+.eventFullDescription p {margin:0px;}
+
+.eventSpeakerBiography {padding-bottom:20px;width:500px; overflow-x:auto}
+.eventSpeakerBiography p {margin:0px;}
+
+.itemEventSpeakerBiography {padding-bottom:20px;width:500px; overflow-x:auto}
+.itemEventSpeakerBiography p {margin:0px;}
+
+.photoFullDescription {padding-bottom:20px;width:500px; overflow-x:auto}
+.photoFullDescription p {margin:0px;}
+
+
+
+
+
+/***********************************
+  Theme Specific Style Elements
+  ------------------------------
+  The following style elements are specific to the current
+  theme.
+************************************/
+
+
+/* Default Theme */
+
+.SmallImage {background-image: url("ArrowRow_Small.gif"); background-position: center left; background-repeat: no-repeat;}
+.BigImage {background-image: url("ArrowRow_Big.gif"); background-position: center center; background-repeat: no-repeat;}
+
+
+/* DM Specific */
+.DMTable
+{
+	border-right: White thin solid;
+	border-top: silver thin solid;
+	border-left: White thin solid;
+	border-bottom: White thin solid;
+}
+
+.DMTableHighlighted
+{
+	border-right: White thin solid;
+	border-top: silver thin solid;
+	border-left: White thin solid;
+	border-bottom: White thin solid;
+	background-color: White;
+}
+
+.DMTableHeader
+{
+	font-weight: bold;
+	font-size: 10pt;
+}
+.DMHeader
+{
+	font-weight: bold;
+	font-size: 11pt;
+}
+.DMHeader2
+{
+	FONT: normal 15.5pt Arial, arial, helvetica, sans-serif; 
+	font-weight: normal;
+}
+.DMText
+{
+	font-size: 8pt;
+}
+.DMTextSmall
+{
+	font-size: 8pt;
+}
+.DMUL	
+{
+	padding-left: 18px;
+	margin: 0px 0px 5px 0px;
+	line-height: 10px;
+
+}
+.DMLI
+{
+	margin: 0px 0px 10px px;
+}

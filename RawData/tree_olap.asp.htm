@@ -1,0 +1,628 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><title>Tree utilities in SQL Server 2000 and 2005, and OLAP implementations - The Code Project - C# Database</title>
+
+
+
+
+<!-- base -->
+<meta http-equiv="Reply-to" content="mailto:webmaster@codeproject.com">
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta name="MS.LOCALE" content="en-US">
+<meta name="Description" content="This article describes how to efficiently store and access tree structures in a SQL Server database, and how to use them in OLAP implementations.">
+<meta name="Search.TopicType" content="kbArticle">
+<meta name="Author" content="Dan Radu">
+<meta name="Search.PublishDate" content="18 Jul 2006 14:00:00 GMT">
+<meta name="Search.RevisedDate" content="18 Jul 2006 14:00:00 GMT">
+
+<meta name="keywords" content="Free source code, , Visual C++, MFC, Windows, OLAP, WebService, Transformation, Dimension, Cube">
+<meta name="Copyright" content="Article content copyright Dan Radu, 2006, everthing else Copyright © CodeProject, 1999-2007, All Rights Reserved.">
+<link rel="alternate" type="application/rss+xml" title="CodeProject Lounge Postings" href="http://www.codeproject.com/webservices/LoungeRSS.aspx">
+<link rel="alternate" type="application/rss+xml" title="CodeProject Latest articles - All topics" href="http://www.codeproject.com/webservices/articlerss.aspx?cat=1">
+<link rel="alternate" type="application/rss+xml" title="CodeProject Latest articles - MFC / C++" href="http://www.codeproject.com/webservices/articlerss.aspx?cat=2">
+<link rel="alternate" type="application/rss+xml" title="CodeProject Latest articles - C#" href="http://www.codeproject.com/webservices/articlerss.aspx?cat=3">
+<link rel="alternate" type="application/rss+xml" title="CodeProject Latest articles - ASP.NET" href="http://www.codeproject.com/webservices/articlerss.aspx?cat=4">
+<link rel="alternate" type="application/rss+xml" title="CodeProject Latest articles - .NET" href="http://www.codeproject.com/webservices/articlerss.aspx?cat=5">
+<link rel="alternate" type="application/rss+xml" title="CodeProject Latest articles - VB.NET" href="http://www.codeproject.com/webservices/articlerss.aspx?cat=6">
+<link rel="search" type="application/opensearchdescription+xml" title="The Code Project" href="http://www.codeproject.com/info/OpenSearch.xml">
+<link rel="icon" href="http://www.codeproject.com/favicon.ico" type="image/ico">
+<link rel="SHORTCUT ICON" href="http://www.codeproject.com/favicon.ico">
+<link rel="stylesheet" type="text/css" href="tree_olap.asp_files/global.css">
+
+<link rel="stylesheet" type="text/css" href="tree_olap.asp_files/netscape6.css">
+
+<script language="JavaScript">
+<!--
+
+function SymError()
+{
+  return true;
+}
+
+window.onerror = SymError;
+
+var SymRealWinOpen = window.open;
+
+function SymWinOpen(url, name, attributes)
+{
+  return (new Object());
+}
+
+window.open = SymWinOpen;
+
+//-->
+</script>
+
+<script language="javascript">
+if (top != self) top.location.href = location.href;
+if (typeof(DemoUrl) != "undefined")
+	document.write('<me' + 'ta http' + '-equiv="re' + 'fresh" con' + 'tent="1;url=' + DemoUrl + '">');
+</script></head><body style="margin: 0pt;" oncopy="return copyCode();" alink="red" bgcolor="white" link="blue" text="black" vlink="navy">
+
+<script src="tree_olap.asp_files/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-1735123-1";
+urchinTracker();
+</script>
+
+
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+
+<tbody><tr>
+	<td class="HeaderLogo"><a href="http://www.codeproject.com/"><img alt="Home" src="tree_olap.asp_files/codeproject225x90.gif" border="0" height="90"></a></td>
+	<td bgcolor="#ff9900">&nbsp;</td>
+</tr>
+
+
+<tr><td colspan="2">
+
+	<table class="ArticleHeader" cellpadding="3" cellspacing="0" width="100%">
+	<tbody><tr valign="top">
+		<td class="smallText" style="padding-right: 10px;"><a href="http://www.codeproject.com/?cat=4">ASP.NET</a>, <a href="http://www.codeproject.com/?cat=1">All Topics</a>, <a href="http://www.codeproject.com/?cat=3">C#</a>, <a href="http://www.codeproject.com/?cat=5">.NET</a> &gt;&gt; <a href="http://www.codeproject.com/cs/database/">C# Database</a> &gt;&gt; <a href="http://www.codeproject.com/cs/database/#SQL+Server">SQL Server</a> &nbsp;(<span class="SmallText" style="color: red; font-weight: bold;">Advanced</span>)<br>
+			
+			<a href="http://www.codeproject.com/cs/database/tree_olap.asp">http://www.codeproject.com/cs/database/tree_olap.asp</a><br>
+			
+			<br>
+			<div style="font-weight: bold; font-size: 16pt;">Tree utilities in SQL Server 2000 and 2005, and OLAP implementations</div>
+			<b>By <a href="http://www.codeproject.com/script/Articles/list_articles.asp?userid=240847">Dan Radu</a></b>.
+			
+			<br><br><div style="font-size: 12px;">This
+article describes how to efficiently store and access tree structures
+in a SQL Server database, and how to use them in OLAP implementations.</div>
+		</td>
+		<td class="smallText" style="width: 200px;">
+			C#, XML, SQL<br> Windows (WinXP), .NET (.NET 1.1)<br> ASP.NET, Win32, SQL (SQL 2000, SQL 2005), VS<br> DB, Dev<br>
+			<span style="padding-right: 2ex;">Posted</span>: <b>19 Jul 2006</b><br>
+			<span style="padding-right: 3ex;">Views</span>: <b>27,080</b>
+		</td>
+	</tr>
+	
+	
+
+	
+
+
+</tbody></table>
+
+<table border="0" cellpadding="0" cellspacing="0">
+<tbody><tr valign="top">
+
+	
+
+	<td width="100%">
+
+		
+		
+		<table width="100%">
+		<tbody><tr valign="top">
+		<td class="SmallText" nowrap="nowrap">
+		</td>
+		<td align="right" nowrap="nowrap"><a name="__top"></a><table><tbody><tr><td class="smallText" align="right">20 votes  for this article.</td><td>
+<table border="2" cellpadding="0" cellspacing="0"><tbody><tr>
+<td><img src="tree_olap.asp_files/red.gif" border="0" height="5" width="20"></td>
+<td><img src="tree_olap.asp_files/red.gif" border="0" height="5" width="20"></td>
+<td><img src="tree_olap.asp_files/red.gif" border="0" height="5" width="20"></td>
+<td><img src="tree_olap.asp_files/red.gif" border="0" height="5" width="20"></td>
+<td><img src="tree_olap.asp_files/red.gif" border="0" height="5" width="10"><img src="tree_olap.asp_files/white.gif" border="0" height="5" width="10"></td>
+</tr></tbody></table>
+</td></tr><tr><td colspan="2" class="smallText" align="right"><a href="http://www.codeproject.com/script/articles/top_articles.asp?st=2" title="Calculated as rating x Log10(# votes)">Popularity: 5.83</a>. Rating: <b>4.48</b> out of 5.</td></tr></tbody></table></td></tr>
+		</tbody></table>
+		
+			
+	</td>
+</tr>
+
+<tr>
+	<td class="ArticlePane">
+
+<span id="intelliTXT">
+<div id="contentdiv">
+
+
+<!-- Article Starts -->
+
+
+<ul class="download">
+<li><a href="http://www.codeproject.com/cs/database/tree_olap/SQLScripts.zip">Download SQL scripts for TREE_DB creation and OLAP data sources preparation - 5.38 Kb</a> 
+</li><li><a href="http://www.codeproject.com/cs/database/tree_olap/sales.zip">Download Sales fact table data - 8.26 Kb</a> 
+</li><li><a href="http://www.codeproject.com/cs/database/tree_olap/tree_util.zip">Download tree_util web service - 12.5 Kb</a> 
+</li><li><a href="http://www.codeproject.com/cs/database/tree_olap/RefreshSalesCube.zip">Download Refresh Sales cube console application - 160 Kb</a> </li></ul>
+<h2>Introduction</h2>
+<p>I've always liked tree structures. I have worked with them in many
+situations, and I have searched efficient ways to manage them in SQL
+Server. As the limit of 32 nested levels in the SQL Server (both 2000
+and 2005 versions) impedes us to attack this issue recursively, we have
+to allot an overhead in storing and accessing nested structures in
+database tables. In this article, I will try to explain how to
+efficiently store a tree structure in a SQL Server table, access it
+easily from T-SQL and clients, and transform it in to a structure
+recognized by OLAP Dimensions in Microsoft Analysis Services.</p>
+<p>The question is how to efficiently and easily store and access tree
+structures, and how to transform them as in the pictures below:</p>
+<p><img alt="Tree structure in DB, SQL XML and structured format" src="tree_olap.asp_files/tree_olap1.png" height="237" width="600"></p>
+<p><img alt="Tree structure in DB and OLAP format" src="tree_olap.asp_files/tree_olap2.png" height="228" width="600"></p>
+<h2>Tree structure storage</h2>
+<p>The well-known method to store a tree in a relational table is to have a link between a node and its parent. So, the <code>ID</code> and <code>P_ID</code> fields are enough for this approach, where <code>P_ID</code> is <code>NULL</code>
+for root nodes. The access method for this structure could be: storing
+the absolute path (starting from the root) for a node, storing the left
+ID and right ID in a different table if the structure is a binary tree,
+storing once again the <code>ID</code> and <code>P_ID</code> fields values and a <code>LEVEL</code>
+value in another table, storing left and right index values for every
+node in the same table etc. In my opinion, the most efficient way is
+the last one, because the access will be very easy using just a simple <code lang="sql"><span class="vb-function">SELECT</span></code>
+statement and, for large structures, the storage size is minimum. More
+information about trees can be obtained from the CodeProject article, <a href="http://www.codeproject.com/cs/database/persisting_trees.asp">General trees persisted in relational databases</a>, and the MSDN technical article "Hierarchical Data and Scope Checking".</p>
+<p>Using the last technique, we will have two supplementary columns in the table: <code>NLEFT</code>, storing values for the left index, and <code>NRIGHT</code>
+for right index. We have to carefully set the appropriate values for
+these columns, because the "left" value for a node must always be
+between the "left" value and the "right" value of its ancestors. Having
+these conditions, a simple self join for the table with a filter for a
+node will return the entire hierarchy:</p><pre lang="sql"><span class="vb-function">SELECT</span> C.ID, C.P_ID, C.NAME
+<span class="vb-function">FROM</span> TREE C
+<span class="vb-function">INNER</span> <span class="vb-function">JOIN</span> TREE P <span class="vb-function">ON</span> C.NLEFT BETWEEN P.NLEFT <span class="vb-function">AND</span> P.NRIGHT
+<span class="vb-function">WHERE</span> P.ID = <span class="vb-literal">1</span></pre>
+<p><img alt="Tree structure left, right and level values" src="tree_olap.asp_files/tree_olap3.png" height="420" width="401"></p>
+<p>The <code lang="sql"><span class="vb-function">CREATE</span> <span class="vb-function">TABLE</span></code> statement is simple:</p><pre lang="sql"><span class="vb-function">CREATE</span> <span class="vb-function">TABLE</span> TREE (
+    ID <span class="cpp-keyword">int</span> <span class="vb-function">NOT</span> <span class="vb-function">NULL</span> ,
+    P_ID <span class="cpp-keyword">int</span> <span class="vb-function">NULL</span> ,
+    NAME <span class="cpp-keyword">varchar</span> (<span class="vb-literal">100</span>),
+    NLEFT <span class="cpp-keyword">int</span> <span class="vb-function">NOT</span> <span class="vb-function">NULL</span> <span class="vb-function">CONSTRAINT</span> DF_TREE_NLEFT DEFAULT (-<span class="vb-literal">1</span>),
+    NRIGHT <span class="cpp-keyword">int</span> <span class="vb-function">NOT</span> <span class="vb-function">NULL</span> <span class="vb-function">CONSTRAINT</span> DF_TREE_NRIGHT DEFAULT (-<span class="vb-literal">1</span>),
+    NLEVEL <span class="cpp-keyword">int</span> <span class="vb-function">NULL</span> <span class="vb-function">CONSTRAINT</span> DF_TREE_NLEVEL DEFAULT (-<span class="vb-literal">1</span>),
+    <span class="vb-function">CONSTRAINT</span> PK_TREE <span class="vb-function">PRIMARY</span> <span class="vb-function">KEY</span>  <span class="vb-function">CLUSTERED</span> (ID) 
+)</pre>
+<p>I have added the <code>NLEVEL</code> column to store the level of the nodes useful in further needs. The level starts from 1 for the root.</p>
+<p>The access will not be so difficult, but how can we set the appropriate values for <code>NLEFT</code> and <code>NRIGHT</code>?
+I have chosen the trigger implementation, to be sure that every time a
+node is inserted, the hierarchical structure is stored correctly. We
+could update <code>NLEFT</code> and <code>NRIGHT</code> values on deletion (even that is not necessary), and if the <code>P_ID</code> field value is changed.</p>
+<p>I present only the trigger for insert action, but it can be done in the same manner for all update <code>P_ID</code>s
+and delete as well. The trigger checks if the new inserted node is a
+root or a descendant node. If it is a root, it generates a new <code>NLEFT</code> value (it allocates a maximum of 10000 values per hierarchy) and sets the <code>NLEVEL</code>
+to 1. If it is a child node, set values depending on if the node is the
+first (there are no other children on the same level) or last (there
+are other children for corresponding levels and the parent) child added:</p><pre lang="sql"><span class="vb-function">IF</span> @P_ID <span class="vb-function">IS</span> <span class="vb-function">NULL</span> 
+<span class="vb-function">BEGIN</span>
+    <span class="vb-function">SELECT</span> @MAX_VALUE = ISNULL(MAX(NLEFT), <span class="vb-literal">0</span>) + <span class="vb-literal">10000</span> 
+           <span class="vb-function">FROM</span> TREE <span class="vb-function">WHERE</span> P_ID <span class="vb-function">IS</span> <span class="vb-function">NULL</span>
+    <span class="vb-function">SELECT</span> @NLEVEL = <span class="vb-literal">1</span>
+<span class="vb-function">END</span>
+<span class="vb-function">ELSE</span>
+<span class="vb-function">BEGIN</span>
+    <span class="vb-function">SELECT</span> @MAX_VALUE = ISNULL(MAX(NRIGHT), <span class="vb-literal">0</span>) 
+           <span class="vb-function">FROM</span> TREE <span class="vb-function">WHERE</span> P_ID = @P_ID <span class="vb-function">AND</span> ID &lt; @ID
+    <span class="vb-function">SELECT</span> @NLEVEL = ISNULL(NLEVEL, <span class="vb-literal">0</span>) 
+           <span class="vb-function">FROM</span> TREE <span class="vb-function">WHERE</span> P_ID = @P_ID <span class="vb-function">AND</span> ID &lt; @ID
+    <span class="vb-function">IF</span> @MAX_VALUE = <span class="vb-literal">0</span>
+    <span class="vb-function">BEGIN</span>
+        <span class="vb-function">SELECT</span> @MAX_VALUE = ISNULL(NLEFT, <span class="vb-literal">0</span>) <span class="vb-function">FROM</span> TREE <span class="vb-function">WHERE</span> ID = @P_ID
+        <span class="vb-function">SELECT</span> @NLEVEL = ISNULL(NLEVEL, <span class="vb-literal">0</span>) + <span class="vb-literal">1</span> <span class="vb-function">FROM</span> TREE <span class="vb-function">WHERE</span> ID = @P_ID
+    <span class="vb-function">END</span>
+<span class="vb-function">END</span>
+<span class="vb-function">UPDATE</span> TREE <span class="vb-function">SET</span> NLEFT = @MAX_VALUE + <span class="vb-literal">1</span>, 
+       NRIGHT = @MAX_VALUE + <span class="vb-literal">2</span>, 
+       NLEVEL = @NLEVEL <span class="vb-function">WHERE</span> ID = @ID</pre>
+<p>After the values are stored, the trigger ensures that the corresponding ancestors have appropriate <code>NLEFT</code> and <code>NRIGHT</code> values. This is done from the root to the leaves, in <i>Depth-First Traversal</i>. First, it identifies the root node, and then it applies the recalculation algorithm:</p><pre lang="sql"><span class="vb-function">IF</span> @P_ID <span class="vb-function">IS</span> <span class="vb-function">NOT</span> <span class="vb-function">NULL</span>
+<span class="vb-function">BEGIN</span>
+    <span class="vb-function">SELECT</span> @ROOT_ID = ISNULL(P.ID, -<span class="vb-literal">1</span>)
+    <span class="vb-function">FROM</span> TREE C 
+    <span class="vb-function">INNER</span> <span class="vb-function">JOIN</span> TREE P <span class="vb-function">ON</span> C.NLEFT BETWEEN P.NLEFT <span class="vb-function">AND</span> P.NRIGHT
+    <span class="vb-function">WHERE</span> C.ID = @P_ID <span class="vb-function">AND</span> P.P_ID <span class="vb-function">IS</span> <span class="vb-function">NULL</span>
+<span class="cpp-comment">--        EXEC TREE_RECALC @ROOT_ID -- RECURSIVE APPROACH</span>
+    EXEC TREE_RECALC_ITER @ROOT_ID <span class="cpp-comment">-- ITERATIVE APPROACH</span>
+<span class="vb-function">END</span></pre>
+<p>The recalculation or numbering algorithm is:</p>
+<ul>
+<li>get the <code>NLEFT</code> value of the root; 
+</li><li>move down the hierarchy, and find the first child (from left to right) of the topmost parent, and give it a <code>NLEFT</code> value of 2; 
+</li><li>continue down the hierarchy, setting the <code>NLEFT</code> value with last <code>NLEFT</code> + 1, and if a leaf node is found, count its <code>NLEFT</code> and <code>NRIGHT</code> values (<code>NRIGHT</code> = <code>NLEFT</code> + 1); 
+</li><li>continue this numbering for all next possible child nodes at the current level of the hierarchy; 
+</li><li>after all leaf children nodes are numbered, go back to their parent, and set its <code>NRIGHT</code> values with the maximum <code>NRIGHT</code> children value + 1; 
+</li><li>continue numbering the siblings for the current node; 
+</li><li>continue walking the hierarchy until all nodes are numbered; </li></ul>
+<p>The algorithm is implemented in two manners: recursive and iterative.</p>
+<p>The recursive method is simple, and it is found in the <code>TREE_RECALC_REC</code>
+stored procedure. The stored procedure checks if the node currently
+processed has children. If it has, apply itself for all the children,
+setting the <code>@NRIGHT</code> output parameter with the corresponding value. If the node has no children (it is a leaf node), simply set the <code>NLEFT</code> and <code>NRIGHT</code> values:</p><div class="smallText" id="premain4" style="width: 100%;"><img preid="4" src="tree_olap.asp_files/minus.gif" id="preimg4" height="9" width="9"><span preid="4" style="margin-bottom: 0pt;" id="precollapse4"> Collapse</span></div><pre style="margin-top: 0pt;" id="pre4" lang="sql"><span class="vb-function">SELECT</span> @NCOUNT = COUNT(*), @NLEVEL2 = @NLEVEL + <span class="vb-literal">1</span>
+<span class="vb-function">FROM</span> TREE
+<span class="vb-function">WHERE</span> P_ID = @NPARENT
+
+<span class="vb-function">IF</span> @NCOUNT &gt; <span class="vb-literal">0</span>
+<span class="vb-function">BEGIN</span>
+    <span class="vb-function">SELECT</span> @NNEWLEFT = @NLEFT + <span class="vb-literal">1</span>
+    <span class="vb-function">SELECT</span> @NTEMPID = <span class="vb-literal">0</span>
+ 
+    <span class="vb-function">SELECT</span> @NTEMPID = MIN(ID), @NCOUNTER = COUNT(*) 
+    <span class="vb-function">FROM</span> TREE 
+    <span class="vb-function">WHERE</span> P_ID = @NPARENT <span class="vb-function">AND</span> ID &gt; @NTEMPID
+  
+    <span class="vb-function">WHILE</span> (@NCOUNTER &gt; <span class="vb-literal">0</span>)
+    <span class="vb-function">BEGIN</span>
+        EXEC TREE_RECALC_REC @NNEWLEFT, 
+             @NTEMPID, @NLEVEL2, @NRIGHT OUTPUT
+        <span class="vb-function">SELECT</span> @NNEWLEFT = @NRIGHT + <span class="vb-literal">1</span>
+        <span class="vb-function">SELECT</span> @NTEMPID = MIN(ID), @NCOUNTER = COUNT(*) 
+        <span class="vb-function">FROM</span> TREE 
+        <span class="vb-function">WHERE</span> P_ID = @NPARENT <span class="vb-function">AND</span> ID &gt; @NTEMPID
+    <span class="vb-function">END</span>
+ 
+    <span class="vb-function">UPDATE</span> TREE <span class="vb-function">SET</span> NLEFT = @NLEFT, 
+           NRIGHT = @NRIGHT + <span class="vb-literal">1</span>, NLEVEL = @NLEVEL 
+    <span class="vb-function">WHERE</span> ID = @NPARENT
+    <span class="vb-function">SELECT</span> @NRIGHT = @NRIGHT + <span class="vb-literal">1</span>
+<span class="vb-function">END</span>
+<span class="vb-function">ELSE</span>
+<span class="vb-function">BEGIN</span>
+    <span class="vb-function">SELECT</span> @NRIGHT = @NLEFT + <span class="vb-literal">1</span>
+    <span class="vb-function">UPDATE</span> TREE <span class="vb-function">SET</span> NLEFT = @NLEFT, 
+           NRIGHT = @NRIGHT, 
+           NLEVEL = @NLEVEL <span class="vb-function">WHERE</span> ID = @NPARENT
+<span class="vb-function">END</span></pre>
+<p>As it is known, the 32 nested levels limit forces us to <b>not</b> store more than 32 levels on a hierarchy.</p>
+<p>The iterative manner solves the 32 nested levels limit issue. The workaround is to use a "stack" as it is explained in the <a href="http://msdn.microsoft.com/library/default.asp?url=/library/en-us/acdata/ac_8_qd_14_5yk3.asp" target="_blank">Expanding Hierarchies</a>
+MSDN article. The "stack" is a temporary table which stores all the
+nodes which belong to the same parent, starting with the root. The
+nodes are processed in a loop using a level variable, and when there is
+no node with the current level in the "stack", the level is decreased
+with 1 (the previous parent level is processed). The level variable
+takes values form 1 to <code>MAX(<i>hierarchy level</i>)</code>. The
+same algorithm may be applied for a child when you want to retrieve its
+ancestors, but the level variable will start from the child level to 1.
+When the last leaf node in a sub-hierarchy (the node with the greatest <code>ID</code>
+value on its level and parent) is processed, the numbering algorithm
+should be applied over the ancestors. For this, we will need another
+"stack" table which allows numbering from child to ancestors. The
+implementation takes much overhead indeed, but the nested levels are
+limitless. The stored procedure <code>TREE_RECALC_ITER</code> contains the iterative recalculation algorithm:</p><div class="smallText" id="premain5" style="width: 100%;"><img preid="5" src="tree_olap.asp_files/minus.gif" id="preimg5" height="9" width="9"><span preid="5" style="margin-bottom: 0pt;" id="precollapse5"> Collapse</span></div><pre style="margin-top: 0pt;" id="pre5" lang="sql"><span class="vb-function">WHILE</span> @NLEVEL &gt; <span class="vb-literal">0</span>
+<span class="vb-function">BEGIN</span>
+    <span class="vb-function">IF</span> <span class="vb-function">EXISTS</span>(<span class="vb-function">SELECT</span> * <span class="vb-function">FROM</span> #TPC <span class="vb-function">WHERE</span> NLEVEL = @NLEVEL)
+    <span class="vb-function">BEGIN</span>
+        <span class="vb-function">SELECT</span> TOP <span class="vb-literal">1</span> @ID = ID, @P_ID = P_ID, 
+               @NAME = NAME <span class="vb-function">FROM</span> #TPC <span class="vb-function">WHERE</span> NLEVEL = @NLEVEL <span class="vb-function">ORDER</span> <span class="vb-function">BY</span> ID
+
+        <span class="vb-function">INSERT</span> <span class="vb-function">INTO</span> #T VALUES(@ID, @P_ID, @NAME, @NLEFT, @NRIGHT, @NLEVEL)
+
+        <span class="vb-function">DELETE</span> <span class="vb-function">FROM</span> #TPC <span class="vb-function">WHERE</span> NLEVEL = @NLEVEL <span class="vb-function">AND</span> ID = @ID
+
+        <span class="vb-function">INSERT</span> <span class="vb-function">INTO</span> #TPC <span class="vb-function">SELECT</span> ID, P_ID, NAME, 
+               @NLEVEL + <span class="vb-literal">1</span> <span class="vb-function">FROM</span> TREE <span class="vb-function">WHERE</span> P_ID = @ID
+        <span class="vb-function">IF</span> @@ROWCOUNT &gt; <span class="vb-literal">0</span>
+            <span class="vb-function">SET</span> @NLEVEL = @NLEVEL + <span class="vb-literal">1</span>
+
+        <span class="vb-function">IF</span> <span class="vb-function">EXISTS</span>(<span class="vb-function">SELECT</span> ID <span class="vb-function">FROM</span> TREE <span class="vb-function">WHERE</span> P_ID = @ID)
+        <span class="vb-function">BEGIN</span>
+            <span class="vb-function">SET</span> @NLEFT = @NLEFT + <span class="vb-literal">1</span>
+            <span class="vb-function">SET</span> @NRIGHT = @NLEFT + <span class="vb-literal">1</span>
+        <span class="vb-function">END</span>
+        <span class="vb-function">ELSE</span>
+        <span class="vb-function">BEGIN</span>
+            <span class="vb-function">IF</span> @ID = (<span class="vb-function">SELECT</span> MAX(ID) <span class="vb-function">FROM</span> TREE <span class="vb-function">WHERE</span> 
+                      NLEVEL = @NLEVEL <span class="vb-function">AND</span> P_ID = @P_ID)
+            <span class="vb-function">BEGIN</span>
+                PRINT LTRIM(RTRIM(STR(@ID))) + '    ' + 
+                      @NAME + '    ' + LTRIM(RTRIM(STR(@NRIGHT)))
+                <span class="vb-function">SET</span> @NLEVEL2 = <span class="vb-literal">1</span>
+                TRUNCATE <span class="vb-function">TABLE</span> #TCP
+                <span class="vb-function">INSERT</span> <span class="vb-function">INTO</span> #TCP <span class="vb-function">SELECT</span> ID, P_ID, NAME, 
+                            @NLEVEL2 <span class="vb-function">FROM</span> #T <span class="vb-function">WHERE</span> ID = @P_ID
+                <span class="vb-function">WHILE</span> @NLEVEL2 &gt; <span class="vb-literal">0</span>
+                <span class="vb-function">BEGIN</span>
+                    <span class="vb-function">IF</span> <span class="vb-function">EXISTS</span>(<span class="vb-function">SELECT</span> * <span class="vb-function">FROM</span> #TCP <span class="vb-function">WHERE</span> NLEVEL = @NLEVEL2)
+                    <span class="vb-function">BEGIN</span>
+                        <span class="vb-function">SELECT</span> TOP <span class="vb-literal">1</span> @ID2 = ID, @P_ID2 = P_ID, 
+                                     @NAME2 = NAME <span class="vb-function">FROM</span> #TCP 
+                                     <span class="vb-function">WHERE</span> NLEVEL = @NLEVEL2 <span class="vb-function">ORDER</span> <span class="vb-function">BY</span> ID
+                        <span class="vb-function">SET</span> @NRIGHT = @NRIGHT + <span class="vb-literal">1</span>
+                        <span class="vb-function">UPDATE</span> #T <span class="vb-function">SET</span> NRIGHT = @NRIGHT <span class="vb-function">WHERE</span> ID = @ID2
+                        <span class="vb-function">DELETE</span> <span class="vb-function">FROM</span> #TCP <span class="vb-function">WHERE</span> NLEVEL = @NLEVEL2 <span class="vb-function">AND</span> ID = @ID2
+                        <span class="vb-function">INSERT</span> <span class="vb-function">INTO</span> #TCP <span class="vb-function">SELECT</span> ID, P_ID, NAME, 
+                               @NLEVEL2 + <span class="vb-literal">1</span> <span class="vb-function">FROM</span> #T <span class="vb-function">WHERE</span> ID = @P_ID2
+                        <span class="vb-function">IF</span> @@ROWCOUNT &gt; <span class="vb-literal">0</span>
+                            <span class="vb-function">SET</span> @NLEVEL2 = @NLEVEL2 + <span class="vb-literal">1</span>
+                    <span class="vb-function">END</span>
+                    <span class="vb-function">ELSE</span>
+                    <span class="vb-function">BEGIN</span>
+                        <span class="vb-function">SET</span> @NLEVEL2 = @NLEVEL2 - <span class="vb-literal">1</span>
+                    <span class="vb-function">END</span>
+                <span class="vb-function">END</span>
+
+            <span class="vb-function">END</span>
+            <span class="vb-function">ELSE</span>
+            <span class="vb-function">BEGIN</span>
+                <span class="vb-function">SET</span> @NLEFT = @NRIGHT + <span class="vb-literal">1</span>
+                <span class="vb-function">SET</span> @NRIGHT = @NLEFT + <span class="vb-literal">1</span>
+            <span class="vb-function">END</span>
+        <span class="vb-function">END</span>
+
+    <span class="vb-function">END</span>
+    <span class="vb-function">ELSE</span>
+    <span class="vb-function">BEGIN</span>
+        <span class="vb-function">SET</span> @NLEVEL = @NLEVEL - <span class="vb-literal">1</span>
+        <span class="vb-function">SELECT</span> @NLEFT = MAX(NRIGHT) + <span class="vb-literal">1</span> <span class="vb-function">FROM</span> #T <span class="vb-function">WHERE</span> NLEVEL = @NLEVEL
+        <span class="vb-function">SET</span> @NRIGHT = @NLEFT + <span class="vb-literal">1</span>
+    <span class="vb-function">END</span>
+<span class="vb-function">END</span></pre>
+<h2>Tree structure access</h2>
+<p>The hierarchy can now be accessed easily using simple SQL statements:</p>
+<ul>
+<li>select an entire hierarchy: <pre lang="sql"><span class="vb-function">SELECT</span> C.ID, C.P_ID, C.NAME
+<span class="vb-function">FROM</span> TREE C
+<span class="vb-function">INNER</span> <span class="vb-function">JOIN</span> TREE P <span class="vb-function">ON</span> C.NLEFT BETWEEN P.NLEFT <span class="vb-function">AND</span> P.NRIGHT
+<span class="vb-function">WHERE</span> P.ID = <span class="vb-literal">1</span></pre>
+</li><li>select all the ancestors for a node: <pre lang="sql"><span class="vb-function">SELECT</span> P.ID, P.NAME, P.P_ID
+<span class="vb-function">FROM</span> TREE C 
+<span class="vb-function">INNER</span> <span class="vb-function">JOIN</span> TREE P <span class="vb-function">ON</span> C.NLEFT BETWEEN P.NLEFT <span class="vb-function">AND</span> P.NRIGHT
+<span class="vb-function">WHERE</span> C.ID = <span class="vb-literal">5</span></pre>
+</li><li>select all the leaf nodes in a hierarchy: <pre lang="sql"><span class="vb-function">SELECT</span> C.ID, C.P_ID, C.NAME
+<span class="vb-function">FROM</span> TREE C
+<span class="vb-function">INNER</span> <span class="vb-function">JOIN</span> TREE P <span class="vb-function">ON</span> C.NLEFT BETWEEN P.NLEFT <span class="vb-function">AND</span> P.NRIGHT
+<span class="vb-function">WHERE</span> P.ID = <span class="vb-literal">1</span> <span class="vb-function">AND</span> C.NRIGHT - C.NLEFT = <span class="vb-literal">1</span></pre>
+</li><li>retrieve all the non-leaf nodes in a hierarchy: <pre lang="sql"><span class="vb-function">SELECT</span> C.ID, C.P_ID, C.NAME
+<span class="vb-function">FROM</span> TREE C
+<span class="vb-function">INNER</span> <span class="vb-function">JOIN</span> TREE P <span class="vb-function">ON</span> C.NLEFT BETWEEN P.NLEFT <span class="vb-function">AND</span> P.NRIGHT
+<span class="vb-function">WHERE</span> P.ID = <span class="vb-literal">1</span> <span class="vb-function">AND</span> C.NRIGHT &#8211; C.NLEFT &lt;&gt; <span class="vb-literal">1</span></pre>
+</li><li>select an entire structure in XML mode (with two nested levels, as it is implemented in the <code>TREE_GET_XML</code> stored procedure): <pre lang="sql"><span class="vb-function">SELECT</span> 
+    <span class="vb-literal">1</span> <span class="vb-function">AS</span> <span class="vb-function">TAG</span>
+    , <span class="vb-function">NULL</span> <span class="vb-function">AS</span> PARENT
+    , '' <span class="vb-function">AS</span> [root!<span class="vb-literal">1</span>]
+    , <span class="vb-function">NULL</span> <span class="vb-function">AS</span> [node!<span class="vb-literal">2</span>!id]
+    , <span class="vb-function">NULL</span> <span class="vb-function">AS</span> [node!<span class="vb-literal">2</span>!p_id]
+    , T.NAME <span class="vb-function">AS</span> [node!<span class="vb-literal">2</span>!name]
+<span class="vb-function">FROM</span> TREE T
+<span class="vb-function">WHERE</span> T.ID = @ROOT_ID
+<span class="vb-function">UNION</span>
+<span class="vb-function">SELECT</span> <span class="vb-literal">2</span>, <span class="vb-literal">1</span>, <span class="vb-function">NULL</span>, C.ID, C.P_ID, C.NAME
+<span class="vb-function">FROM</span> TREE P
+<span class="vb-function">INNER</span> <span class="vb-function">JOIN</span> TREE C <span class="vb-function">ON</span> C.NLEFT BETWEEN P.NLEFT <span class="vb-function">AND</span> P.NRIGHT
+<span class="vb-function">WHERE</span> P.ID = @ROOT_ID
+FOR XML EXPLICIT</pre></li></ul>
+<p>The last XML output is not so useful for the clients. They probably
+need the underlying tree structure which SQL Server XML features can't
+obtain, and not this "fake" ID-parent ID implementation. So, the next
+idea will be to re-arrange the "fake" tree structure in a XML nested
+hierarchy. This will be done using the <code>TREE_GET_XML</code> stored procedure, an XML web service, and a general XSL transform stylesheet. Using <code>id</code> and <code>p_id</code>
+attributes, the stylesheet will put the nodes in a proper tree order.
+The stylesheet is incredibly simple. It applies a template starting
+from the root node (<code><span class="cpp-comment">//*[not(@p_id)]</span></code>), and this template applies itself recursively on all the nodes that has the <code>p_id</code> attribute value equal to its <code>id</code> attribute value (<code><span class="cpp-comment">//*[@p_id = $id]</span></code>):</p><pre lang="xml">&lt;?xml version="1.0" encoding="UTF-8" ?&gt;
+&lt;xsl:stylesheet version="1.0" 
+    xmlns:xsl="http://www.w3.org/1999/XSL/Transform"&gt;
+
+&lt;xsl:template match="/"&gt;
+    &lt;xsl:apply-templates 
+        select="//*[name() = 'node' and not(@p_id)]"/&gt;
+&lt;/xsl:template&gt;
+
+&lt;xsl:template match="*"&gt;
+    &lt;xsl:variable name="id" select="@id"/&gt;
+    &lt;xsl:element name="node"&gt;
+        &lt;xsl:apply-templates select="@*"/&gt;
+        &lt;xsl:apply-templates select="//*[@p_id = $id]"/&gt;
+    &lt;/xsl:element&gt;
+&lt;/xsl:template&gt;
+
+&lt;xsl:template match="@*"&gt;
+    &lt;xsl:copy-of select="."/&gt;
+&lt;/xsl:template&gt;
+
+&lt;/xsl:stylesheet&gt;</pre>
+<p>The <code>tree_util</code> XML web service contains two web methods:</p>
+<ul>
+<li><code>GetDirectTree</code> &#8211; returns the XML output as it is gathered by <code>TREE_GET_XML</code>; 
+</li><li><code>GetStructuredTree</code> &#8211; returns the XML output gathered by <code>TREE_GET_XML</code> and transformed in an underlying tree structure. </li></ul>
+<h2>Tree to OLAP transformation</h2>
+<p>Suppose that this tree structure will serve as a data source for an
+OLAP cube dimension. The dimensions and the cube can be created easily
+using Analysis Services. But what happens when the tree structure has
+changed, having one level more? Is it enough just to refresh the
+dimensions and the cube? The answer is no, the cube will not reflect
+the changes.</p>
+<p>Let's imagine that we have a data cube which has a <code>TREE_OLAP</code> dimension (doesn't matter what it contains &#8211; countries, regions, and cities; departments; geographical areas etc.) and a <code>TIME</code>
+dimension. A problem that I consider important in OLAP cubes creation
+and update is, what happens if the main structure of a dimension is
+changing and I have to add or delete some levels? How easily can I
+update the dimension and the cube? And, if possible, do that
+automatically.</p>
+<p><code>TREE_OLAP</code> dimension has as data source the <code>TREE_OLAP</code>
+table which contains the tree nodes in a totally different structure.
+The ID-parent ID tree implementation doesn't help the OLAP dimensions
+to get the data and to process it. They need a more redundant structure
+to arrange tree nodes on different levels. They need a column in the
+data source for every dimension level. The structure they need is the
+one shown in the second picture at the beginning of this article.</p>
+<p>The <code>TREE_OLAP</code> table must be recreated every time the <code>TREE</code> hierarchy is changed. The columns in this table are the tree <code>ID</code> taken from the <code>TREE</code> table and, for every level of the hierarchy, a <code lang="sql"><span class="cpp-keyword">varchar</span></code> column named "N", and the level value (e.g.: if the tree structure has three levels, the <code>TREE_OLAP</code> table will have 4 columns: <code>ID</code> <code lang="sql"><span class="cpp-keyword">int</span></code>, <code>N1</code> <code lang="sql"><span class="cpp-keyword">varchar</span>(<span class="vb-literal">100</span>)</code>, <code>N2</code> <code lang="sql"><span class="cpp-keyword">varchar</span>(<span class="vb-literal">100</span>)</code>, and <code>N3</code> <code lang="sql"><span class="cpp-keyword">varchar</span>(<span class="vb-literal">100</span>)</code>).</p>
+<p>The <code>TREE_OLAP</code> table is re-created and filled with the appropriate values using the <code>TREE_2_OLAP</code> stored procedure. The procedure checks the maximum level of the hierarchy and re-creates the <code>TREE_OLAP</code> table. To populate this table, it must traverse the tree in a similar manner as it performs the <code>TREE_RECALC_ITER</code> stored procedure (with two "stack" temporary tables). For the currently processed node, the procedure inserts a record in the <code>TREE_OLAP</code> table at the corresponding "N" + <code>LEVEL</code> column:</p><pre lang="sql"><span class="vb-function">SET</span> @SQL = N'<span class="vb-function">INSERT</span> <span class="vb-function">INTO</span> TREE_OLAP VALUES(@ID'
+<span class="vb-function">SET</span> @I = <span class="vb-literal">1</span>
+<span class="vb-function">WHILE</span> @I &lt;= @MAX_LEVEL
+<span class="vb-function">BEGIN</span>
+    <span class="vb-function">IF</span> @I = @NLEVEL
+    <span class="vb-function">SET</span> @SQL = @SQL + N', @NAME'
+    <span class="vb-function">ELSE</span>
+        <span class="vb-function">SET</span> @SQL = @SQL + N', ''&lt;none&gt;'''
+    <span class="vb-function">SET</span> @I = @I + <span class="vb-literal">1</span>
+<span class="vb-function">END</span>
+<span class="vb-function">SET</span> @SQL = @SQL + N')'
+EXEC sp_executesql @SQL, N'@ID INT, 
+     @NAME VARCHAR(<span class="vb-literal">100</span>)', @ID = @ID, @NAME = @NAME</pre>
+<p>After that, for each ancestor, perform the update for the inserted record on the corresponding ancestor level column:</p><pre lang="sql"><span class="vb-function">SET</span> @SQL = N'<span class="vb-function">UPDATE</span> TREE_OLAP <span class="vb-function">SET</span> N' + 
+           LTRIM(RTRIM(STR(@NLEVEL2))) + ' = @NAME <span class="vb-function">WHERE</span> ID = @ID'
+EXEC sp_executesql @SQL, N'@ID INT, @NAME VARCHAR(<span class="vb-literal">100</span>)', 
+                   @ID = @ID, @NAME = @NAME2</pre>
+<h2>Creating the Sales cube and dimensions</h2>
+<p>If we add some records in the <code>TREE</code> table, add the daily records for 2005 and 2006 in the <code>TIME_BY_DAY</code> table, and import data from the <i>sales.txt</i> file (which contains the <code>TREE_ID</code>, <code>TIME_ID</code>, and <code>SALES_VALUE</code> fields) into the <code>SALES</code> table, we can create the <code>Sales</code> cube. The <i>sales.txt</i> file contains records related only for 2005.</p>
+<p>The time dimension is general, and implemented as it is in the Analysis Services "FoodMart 2000" sample database. The <code>fnIsLeapYear</code>, <code>fnGetDaysNumber</code> functions and the <code>TIME_BY_DAY_GEN</code> stored procedure generates daily records for a specified year in the <code>TIME_BY_DAY</code> table which will serve as the data source for the <code>TIME</code> dimension. The <code>TREE_OLAP</code> dimension is based on a star schema (only one table per dimension). The fact table called <code>SALES</code> has the following structure: <code>ID</code> <code lang="sql"><span class="cpp-keyword">int</span></code>, <code>TREE_ID</code> <code lang="sql"><span class="cpp-keyword">int</span></code> (foreign key to the <code>ID</code> column in the <code>TREE</code> table), <code>TIME_ID</code> <code lang="sql"><span class="cpp-keyword">int</span></code> (foreign key to the <code>ID</code> column in the <code>TIME_BY_DAY</code> table), <code>SALES_VALUES</code> <code lang="sql"><span class="cpp-keyword">float</span></code> (the measure column).</p>
+<p>The cube data visualization will be:</p>
+<p><img alt="Sales cube data visualisation" src="tree_olap.asp_files/tree_olap4.png" height="589" width="480"></p>
+<h2>The RefreshSalesCube application</h2>
+<p>The changes in the dimension and in the cube database can be done
+manually, using Analysis Services user interfaces, and programmatically
+using the DSO (Decision Support Objects &#8211; interop assembly) namespace
+for .NET framework 1.1, and AMO namespace for .NET framework 2.0.</p>
+<p>The <code>RefreshSalesCube</code> is a simple console application which:</p>
+<ul>
+<li>connects to the local Analysis Server: <pre lang="cs">DSO.ServerClass dsoServer = <span class="cs-keyword">new</span> ServerClass();
+dsoServer.Connect(<span class="cpp-string">"localhost"</span>);</pre>
+</li><li>finds the <code>TREE_DB</code> database: <pre lang="cs">DSO.OlapCollection coll = (DSO.OlapCollection)dsoServer.MDStores;
+DSO.Database dsoDB = (DSO.Database)coll.Item(<span class="cpp-string">"TREE_DB"</span>);</pre>
+</li><li>retrieves the <code>Sales</code> data cube: <pre lang="cs">coll = (DSO.OlapCollection)dsoDB.MDStores;
+DSO.Cube dsoCube = (DSO.Cube)coll.Item(<span class="cpp-string">"Sales"</span>);</pre>
+</li><li>retrieves the <code>TREE_OLAP</code> dimension: <pre lang="cs">coll = (DSO.OlapCollection)dsoDB.Dimensions;
+DSO.Dimension dsoDim = (DSO.Dimension)coll.Item(<span class="cpp-string">"TREE_OLAP"</span>);</pre>
+</li><li>re-creates and re-processes the dimension, detaching the
+shared dimension from the cube, removing dimension levels, and
+re-creating the new levels based on the columns of the new <code>TREE_OLAP</code> table: <div class="smallText" id="premain18" style="width: 100%;"><img preid="18" src="tree_olap.asp_files/minus.gif" id="preimg18" height="9" width="9"><span preid="18" style="margin-bottom: 0pt;" id="precollapse18"> Collapse</span></div><pre style="margin-top: 0pt;" id="pre18" lang="cs">dsoCube.Dimensions.Remove(dsoDim.Name);
+
+<span class="cs-keyword">int</span> i = dsoDim.Levels.Count;
+<span class="cs-keyword">while</span>(i &gt; <span class="cs-literal">0</span>)
+{
+    dsoDim.Levels.Remove(i);
+    i--;
+}
+
+SqlConnection cnn = <span class="cs-keyword">new</span> SqlConnection(
+  ConfigurationSettings.AppSettings[<span class="cpp-string">"ConnectionString"</span>]);
+cnn.Open();
+SqlDataAdapter da = <span class="cs-keyword">new</span> SqlDataAdapter(<span class="cpp-string">"SELECT TOP"</span> + 
+                         <span class="cpp-string">" 0 * FROM TREE_OLAP"</span>, cnn);
+DataTable dt = <span class="cs-keyword">new</span> DataTable();
+da.Fill(dt);
+cnn.Close();
+
+<span class="cs-keyword">int</span> nColumns = dt.Columns.Count;
+<span class="cs-keyword">int</span> adVarChar = <span class="cs-literal">200</span>;
+<span class="cs-keyword">for</span>(i = <span class="cs-literal">1</span>; i &lt; nColumns; i++)
+{
+    DSO.Level lvl = (DSO.Level)dsoDim.Levels.AddNew(
+                     dt.Columns[i].ColumnName, 
+                     DSO.SubClassTypes.sbclsRegular);
+    lvl.MemberKeyColumn = <span class="cpp-string">"\"</span>dbo\<span class="cpp-string">".\"</span>TREE_OLAP\<span class="cpp-string">".\"</span><span class="cpp-string">" + 
+                          dt.Columns[i].ColumnName + "</span>\<span class="cpp-string">""</span>;
+    lvl.ColumnType = (<span class="cs-keyword">short</span>)adVarChar;
+    lvl.ColumnSize = <span class="cs-literal">100</span>;
+}
+dsoDim.Process(DSO.ProcessTypes.processFull);</pre>
+</li><li>re-processes the cube, adding the dimension and re-creating the join between the fact table and the dimension tables: <pre lang="cs">DSO.Dimension dim = (DSO.Dimension)
+   dsoCube.Dimensions.AddNew(<span class="cpp-string">"TREE_OLAP"</span>, 
+   DSO.SubClassTypes.sbclsRegular);
+dim = dsoDim;
+
+dsoCube.JoinClause = <span class="cpp-string">"\"</span>dbo\<span class="cpp-string">".\"</span>Sales\<span class="cpp-string">".\"</span>TREE_ID\<span class="cpp-string">" ="</span> + 
+                     <span class="cpp-string">" \"</span>dbo\<span class="cpp-string">".\"</span>TREE_OLAP\<span class="cpp-string">".\"</span>ID\<span class="cpp-string">" AND"</span> + 
+                     <span class="cpp-string">" \"</span>dbo\<span class="cpp-string">".\"</span>Sales\<span class="cpp-string">".\"</span>TIME_ID\<span class="cpp-string">" ="</span> + 
+                     <span class="cpp-string">" \"</span>dbo\<span class="cpp-string">".\"</span>TIME_BY_DAY\<span class="cpp-string">".\"</span>ID\<span class="cpp-string">""</span>;
+
+dsoCube.Update();
+
+dsoCube.Process(DSO.ProcessTypes.processFull);</pre></li></ul>
+<h2>Updating the Sales cube and the TREE_OLAP dimension</h2>
+<p>Let's add a new record in the <code>TREE</code> table, which will increase the level of the hierarchy:</p><pre lang="sql"><span class="vb-function">INSERT</span> <span class="vb-function">INTO</span> TREE(ID, P_ID, NAME) VALUES(<span class="vb-literal">21</span>, <span class="vb-literal">20</span>, 'MamaW')</pre>
+<p>The new record will have a correspondent in the fact table, in a day in 2006, let's say, '2006-07-18', with a value for <code>SALES_VALUES</code> of 1000:</p><pre lang="sql"><span class="vb-function">DECLARE</span> @TIME_ID INT
+<span class="vb-function">SELECT</span> @TIME_ID = ID <span class="vb-function">FROM</span> TIME_BY_DAY <span class="vb-function">WHERE</span> T_DATE = '<span class="vb-literal">2006</span>-<span class="vb-literal">07</span>-<span class="vb-literal">18</span>'
+<span class="vb-function">INSERT</span> <span class="vb-function">INTO</span> SALES VALUES(<span class="vb-literal">21</span>, @TIME_ID, <span class="vb-literal">1000</span>)</pre>
+<p>We can just re-create the <code>TREE_OLAP</code> table:</p><pre lang="sql">EXEC TREE_2_OLAP <span class="vb-literal">1</span></pre>
+<p>and run the <i>RefreshSalesCube</i> application.</p>
+<p>The new cube data visualisation will reflect the changes without a manual update:</p>
+<p><img alt="Sales cube data visualisation after structure and data change" src="tree_olap.asp_files/tree_olap5.png" height="620" width="589"></p>
+<h2>Conclusion</h2>
+<p>Using the implementation on the OLTP database, and a few lines of
+code to re-create and re-process the cube, the structure transformation
+and data changing is transparent for the reporting clients which
+consume the cube data. The process can be automated and scheduled using
+SQL Server jobs, and the time and work performance can be improved.</p>
+
+<!-- Article Ends -->
+
+
+
+</div>
+</span>
+
+<script type="text/javascript" src="tree_olap.asp_files/togglePre.js"></script>
+
+<h2>About Dan Radu</h2>
+<div style="overflow: hidden;"><table border="0"><tbody><tr valign="top"><td class="smallText" nowrap="nowrap"><br></td><td class="smallText">I
+live and work in Bucharest, Romania. I am programmer since 1998, when I
+have developed a "good taste" application for a catering company. Now I
+develop .NET applications (windows and ASP.NET) for large SQL Server
+database systems, with tens of millions of records. <br>I like to
+develop also in other languages like Object Pascal (Delphi), PHP, C++,
+VB, scripting. I enjoy the XML power, both on client side and server
+side.<br><p class="smallText">Click <a href="http://www.codeproject.com/script/profile/whos_who.asp?vt=arts&amp;id=240847">here</a> to view Dan Radu's online profile.</p></td></tr></tbody></table></div><br>
+<br>
+<script language="JavaScript" src="tree_olap.asp_files/addto.js" type="text/javascript"></script>
+<script language="JavaScript" type="text/javascript">
+var addtoMethod=1;
+var AddURL = document.location.href;
+var AddTitle = escape(document.title);
+DrawLinks(100, 0, "smalltext bold", "smalltext") 
+</script><span class="smalltext bold">Add this article to: </span> <span class="smalltext" title="Add this page to Del.icio.us" onclick="addto(2)"><img src="tree_olap.asp_files/AddTo_Delicious.gif" align="absmiddle" border="0" height="16" width="16"> Del.icio.us</span> <span class="smalltext" title="Add this page to Digg" onclick="addto(3)"><img src="tree_olap.asp_files/AddTo_Digg.gif" align="absmiddle" border="0" height="16" width="16"> Digg</span> <span class="smalltext" title="Add this page to Google" onclick="addto(5)"><img src="tree_olap.asp_files/AddTo_Google.gif" align="absmiddle" border="0" height="16" width="16"> Google</span> <span class="smalltext" title="Add this page to Spurl" onclick="addto(8)"><img src="tree_olap.asp_files/AddTo_Spurl.gif" align="absmiddle" border="0" height="16" width="16"> Spurl</span> <span class="smalltext" title="Add this page to Blink" onclick="addto(1)"><img src="tree_olap.asp_files/AddTo_Blink.gif" align="absmiddle" border="0" height="16" width="16"> Blink</span> <span class="smalltext" title="Add this page to Furl" onclick="addto(4)"><img src="tree_olap.asp_files/AddTo_Furl.gif" align="absmiddle" border="0" height="16" width="16"> Furl</span> <span class="smalltext" title="Add this page to Simpy" onclick="addto(6)"><img src="tree_olap.asp_files/AddTo_Simpy.gif" align="absmiddle" border="0" height="16" width="16"> Simpy</span> <span class="smalltext" title="Add this page to Yahoo! MyWeb" onclick="addto(7)"><img src="tree_olap.asp_files/AddTo_Yahoo.gif" align="absmiddle" border="0" height="16" width="16"> Yahoo! MyWeb</span> 
+<br><br>
+
+<table bgcolor="#ff9900" cellpadding="0" width="100%"><tbody><tr><td>
+</td></tr></tbody></table>
+<h2>Discussions and Feedback</h2><blockquote><img src="tree_olap.asp_files/news_unselected.gif"> <b>21 comments</b> have  been posted for this article. Visit <b><a href="http://www.codeproject.com/cs/database/tree_olap.asp">http://www.codeproject.com/cs/database/tree_olap.asp</a></b> to post and view comments on this article.</blockquote>
+
+<table cellspacing="5" width="100%">
+<tbody><tr valign="top"><td class="smallText">
+
+Updated: 19 Jul 2006
+</td><td class="SmallText" align="right">
+Article content copyright Dan Radu, 2006<br>
+everything else Copyright © <a href="mailto:webmaster@codeproject.com">CodeProject</a>, 1999-2007.
+
+</td></tr>
+</tbody></table>
+
+</td></tr></tbody></table>
+
+
+<script type="text/javascript" src="tree_olap.asp_files/front.js"></script>
+
+<script language="JavaScript">
+<!--
+var SymRealOnLoad;
+var SymRealOnUnload;
+
+function SymOnUnload()
+{
+  window.open = SymWinOpen;
+  if(SymRealOnUnload != null)
+     SymRealOnUnload();
+}
+
+function SymOnLoad()
+{
+  if(SymRealOnLoad != null)
+     SymRealOnLoad();
+  window.open = SymRealWinOpen;
+  SymRealOnUnload = window.onunload;
+  window.onunload = SymOnUnload;
+}
+
+SymRealOnLoad = window.onload;
+window.onload = SymOnLoad;
+
+//-->
+</script>
+
+</td></tr></tbody></table></body></html>
