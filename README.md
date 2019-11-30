@@ -10,3 +10,7 @@ Decision Tree in Data Mining
 
   FRONT END: - C++, STL, VC++ 6.0.
   BACK END: - MySQL, EMS Manager.
+
+# Example - Decision Tree for TickTacToe
+
+![TickTacToe](https://github.com/sachinjegaonkar/DecisionTree/blob/master/Output/tictactoe.jpg)
